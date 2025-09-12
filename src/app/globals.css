@@ -43,6 +43,10 @@
 
 :root {
   --radius: 0.625rem;
+  --header-bg: #ffffff;
+  --header-text: #6aa7d8;
+  --header-text-muted: #6b7280;
+  --header-border: #e6e9ed;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -117,5 +121,24 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Header utilities */
+.site-header {
+  background: var(--header-bg);
+}
+.site-header a {
+  color: var(--header-text-muted);
+}
+.site-header a:hover {
+  color: var(--header-text);
+}
+
+/* When a screen or page needs inverted header colors (e.g., over a banner) */
+.site-header--inverted {
+  --header-text: #ffffff;
+  --header-text-muted: rgba(255,255,255,0.85);
+  --header-bg: transparent;
+  --header-border: transparent;
 }
 
