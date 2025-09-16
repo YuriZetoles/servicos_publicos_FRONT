@@ -123,7 +123,6 @@
   }
 }
 
-/* Header utilities */
 .site-header {
   background: var(--header-bg);
 }
@@ -134,11 +133,11 @@
   color: var(--header-text);
 }
 
-/* When a screen or page needs inverted header colors (e.g., over a banner) */
 .site-header--inverted {
   --header-text: #ffffff;
   --header-text-muted: rgba(255,255,255,0.85);
   --header-bg: transparent;
   --header-border: transparent;
 }
+
 
