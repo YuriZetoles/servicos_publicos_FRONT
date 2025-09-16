@@ -36,7 +36,7 @@ export default function Footer() {
                                 href={footerData.contato.email} 
                                 target="_blank" 
                                 rel="noreferrer"
-                                className="p-2 rounded-lg bg-[#337695]/10 hover:bg-[#337695] hover:text-white transition-all duration-300 text-[#2c5f7a] hover:scale-110"
+                                className="p-2 rounded-lg bg-[#337695]/10 transition-all duration-300 hover:scale-110"
                                 aria-label="Enviar e-mail para o gabinete"
                                 title="Enviar e-mail"
                             >
@@ -46,7 +46,7 @@ export default function Footer() {
                                 href={footerData.contato.telefone} 
                                 target="_blank" 
                                 rel="noreferrer"
-                                className="p-2 rounded-lg bg-[#337695]/10 hover:bg-[#337695] hover:text-white transition-all duration-300 text-[#2c5f7a] hover:scale-110"
+                                className="p-2 rounded-lg bg-[#337695]/10 transition-all duration-300 hover:scale-110"
                                 aria-label="Ligar para o telefone do gabinete"
                                 title="Ligar"
                             >
@@ -56,7 +56,7 @@ export default function Footer() {
                                 href={footerData.contato.facebook} 
                                 target="_blank" 
                                 rel="noreferrer"
-                                className="p-2 rounded-lg bg-[#337695]/10 hover:bg-[#1877f2] hover:text-white transition-all duration-300 text-[#2c5f7a] hover:scale-110"
+                                className="p-2 rounded-lg bg-[#337695]/10 transition-all duration-300 hover:scale-110"
                                 aria-label="Acessar página oficial do Facebook"
                                 title="Facebook"
                             >
@@ -66,7 +66,7 @@ export default function Footer() {
                                 href={footerData.contato.instagram} 
                                 target="_blank" 
                                 rel="noreferrer"
-                                className="p-2 rounded-lg bg-[#337695]/10 hover:bg-gradient-to-r hover:from-[#833ab4] hover:to-[#fd1d1d] hover:text-white transition-all duration-300 text-[#2c5f7a] hover:scale-110"
+                                className="p-2 rounded-lg bg-[#337695]/10 hover:bg-gradient-to-r transition-all duration-300 hover:scale-110"
                                 aria-label="Acessar perfil oficial do Instagram"
                                 title="Instagram"
                             >
