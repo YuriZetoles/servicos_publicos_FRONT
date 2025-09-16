@@ -52,7 +52,7 @@ export default function Header({ inverted }: { inverted?: boolean }) {
         </div>
       </div>
 
-      <div id="mobile-menu" className="md:hidden" aria-hidden={!open}>
+  <div id="mobile-menu" className="md:hidden" aria-hidden={open ? 'false' : 'true'}>
         <div
           className={`transform-origin-top transition-all duration-200 ease-in-out ${open ? 'opacity-100 scale-100 max-h-96' : 'opacity-0 scale-95 max-h-0'} overflow-hidden border-t`}
           style={{ borderColor: 'var(--header-border)' }}
