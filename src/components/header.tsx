@@ -29,7 +29,7 @@ export default function Header({ inverted }: { inverted?: boolean }) {
 
   return (
     <header className={cls} style={{ borderColor: 'var(--header-border)' }}>
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className=" px-6 sm:px-6 lg:px-40">
         <div className="flex items-center justify-between" style={{ height: 64 }}>
           <div className="flex-shrink-0">
             <Link
