@@ -20,7 +20,7 @@ const dadosFooter = {
 export default function Home() {
   return (
     <div>
-      <Footer endereco={dadosFooter.endereco} contato={dadosFooter.contato} theme="green" />
+      <Footer endereco={dadosFooter.endereco} contato={dadosFooter.contato} />
     </div>
   );
 }
