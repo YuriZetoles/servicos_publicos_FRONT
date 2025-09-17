@@ -21,8 +21,8 @@ export default function Footer({ endereco, contato, theme = 'default' }: FooterP
   const themeClass = theme === 'green' ? 'footer-theme-green' : theme === 'purple' ? 'footer-theme-purple' : '';
   
   return (
-    <footer className={`border-t border-[var(--footer-border)] bg-[var(--footer-bg)] px-6 py-4 text-sm text-[var(--footer-text-primary)] ${themeClass}`}>
-      <div className="container mx-auto">
+    <footer className={`border-t border-[var(--footer-border)] bg-[var(--footer-bg)] px-6 sm:px-6 lg:px-40 py-4 text-sm text-[var(--footer-text-primary)] ${themeClass}`}>
+      
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-center">
           <address className="md:flex-1 text-center md:text-left not-italic">
             <p className="font-semibold text-base text-[var(--footer-text-secondary)] mb-1">
@@ -103,7 +103,6 @@ export default function Footer({ endereco, contato, theme = 'default' }: FooterP
             </div>
           </div>
         </div>
-      </div>
     </footer>
   );
 }
