@@ -4,9 +4,29 @@ import { Navigation } from "./ui/navigation";
 import NavLink from "./ui/nav-link";
 import * as React from "react";
 
+interface HeaderLink {
+  href: string;
+  label: string;
+}
+
+interface HeaderData {
+  title: string;
+  links: HeaderLink[];
+}
+
+const headerData: HeaderData = {
+  title: "VILHENA+PÚBLICA",
+  links: [
+    { href: "/", label: "Home" },
+    { href: "/pedidos", label: "Meus Pedidos" },
+    { href: "/login", label: "Login" },
+  ],
+};
+
 export default function Header({ inverted }: { inverted?: boolean }) {
   const [open, setOpen] = React.useState(false);
   const cls = `site-header bg-[var(--header-bg)] border-b ${inverted ? 'site-header--inverted' : ''}`;
+
   return (
     <header className={cls} style={{ borderColor: 'var(--header-border)' }}>
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -17,16 +37,18 @@ export default function Header({ inverted }: { inverted?: boolean }) {
               className="font-semibold tracking-wide text-[18px] md:text-[20px]"
               style={{ color: 'var(--header-text)' }}
             >
-              VILHENA+PÚBLICA
+              {headerData.title}
             </Link>
           </div>
 
           <div className="hidden md:block">
             <nav>
               <Navigation>
-                <NavLink href="/">Home</NavLink>
-                <NavLink href="/pedidos">Meus Pedidos</NavLink>
-                <NavLink href="/login">Login</NavLink>
+                {headerData.links.map((link) => (
+                  <NavLink key={link.href} href={link.href}>
+                    {link.label}
+                  </NavLink>
+                ))}
               </Navigation>
             </nav>
           </div>
@@ -52,16 +74,18 @@ export default function Header({ inverted }: { inverted?: boolean }) {
         </div>
       </div>
 
-  <div id="mobile-menu" className="md:hidden" aria-hidden={open ? 'false' : 'true'}>
+      <div id="mobile-menu" className="md:hidden" aria-hidden={open ? 'false' : 'true'}>
         <div
           className={`transform-origin-top transition-all duration-200 ease-in-out ${open ? 'opacity-100 scale-100 max-h-96' : 'opacity-0 scale-95 max-h-0'} overflow-hidden border-t`}
           style={{ borderColor: 'var(--header-border)' }}
         >
           <div className="px-4 pt-2 pb-4 bg-[var(--header-bg)] shadow-sm">
             <Navigation vertical>
-              <NavLink href="/">Home</NavLink>
-              <NavLink href="/pedidos">Meus Pedidos</NavLink>
-              <NavLink href="/login">Login</NavLink>
+              {headerData.links.map((link) => (
+                <NavLink key={link.href} href={link.href}>
+                  {link.label}
+                </NavLink>
+              ))}
             </Navigation>
           </div>
         </div>

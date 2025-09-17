@@ -44,7 +44,7 @@
 :root {
   --radius: 0.625rem;
   --header-bg: #ffffff;
-  --header-text: #6aa7d8;
+  --header-text: #65A3C0;
   --header-text-muted: #6b7280;
   --header-border: #e6e9ed;
   --background: oklch(1 0 0);
@@ -138,6 +138,26 @@
   --header-text-muted: rgba(255,255,255,0.85);
   --header-bg: transparent;
   --header-border: transparent;
+}
+
+.header-theme-green {
+  --header-border: #a7f3d0;
+  --header-text: #56AFA1;
+  --header-text-muted: #46A09B;
+  --header-accent: #10b981;
+  --header-accent-hover: #059669;
+  --header-link-hover: #047857;
+  --header-separator: #10b981;
+}
+
+.header-theme-purple {
+  --header-border: #d8b4fe;
+  --header-text: #5B3C83;
+  --header-text-muted: #9558A9;
+  --header-accent: #a855f7;
+  --header-accent-hover: #9333ea;
+  --header-link-hover: #5d26bb;
+  --header-separator: #a855f7;
 }
 
 
