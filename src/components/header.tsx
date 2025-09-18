@@ -7,11 +7,13 @@ import * as React from "react";
 interface HeaderLink {
   href: string;
   label: string;
+  theme?: 'default' | 'green' | 'purple';
 }
 
 interface HeaderData {
   title: string;
   links: HeaderLink[];
+  theme?: 'default' | 'green' | 'purple';
 }
 
 const headerData: HeaderData = {
@@ -23,19 +25,20 @@ const headerData: HeaderData = {
   ],
 };
 
-export default function Header({ inverted }: { inverted?: boolean }) {
+export default function Header({ theme, inverted }: { theme?: 'default' | 'green' | 'purple'; inverted?: boolean }) {
   const [open, setOpen] = React.useState(false);
-  const cls = `site-header bg-[var(--header-bg)] border-b ${inverted ? 'site-header--inverted' : ''}`;
+  const cls = `site-header bg-[var(--global-bg)] border-b ${inverted ? 'site-header--inverted' : ''}`;
+  const themeClass = theme === 'green' ? 'global-theme-green' : theme === 'purple' ? 'global-theme-purple' : '';
 
   return (
-    <header className={cls} style={{ borderColor: 'var(--header-border)' }}>
+    <header className={`${cls} ${themeClass}`} style={{ borderColor: 'var(--global-border)' }}>
       <div className=" px-6 sm:px-6 lg:px-40">
         <div className="flex items-center justify-between" style={{ height: 64 }}>
           <div className="flex-shrink-0">
             <Link
               href="/"
               className="font-semibold tracking-wide text-[18px] md:text-[20px]"
-              style={{ color: 'var(--header-text)' }}
+              style={{ color: 'var(--global-text-primary)' }}
             >
               {headerData.title}
             </Link>
@@ -60,7 +63,7 @@ export default function Header({ inverted }: { inverted?: boolean }) {
               aria-controls="mobile-menu"
               onClick={() => setOpen((s) => !s)}
               className="inline-flex items-center justify-center p-2 rounded-md focus:outline-none"
-              style={{ color: 'var(--header-text)' }}
+              style={{ color: 'var(--global-text-primary)' }}
             >
               <svg className={`h-6 w-6`} fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 {open ? (
@@ -77,9 +80,9 @@ export default function Header({ inverted }: { inverted?: boolean }) {
       <div id="mobile-menu" className="md:hidden" aria-hidden={!open} suppressHydrationWarning>
         <div
           className={`transform-origin-top transition-all duration-200 ease-in-out ${open ? 'opacity-100 scale-100 max-h-96' : 'opacity-0 scale-95 max-h-0'} overflow-hidden border-t`}
-          style={{ borderColor: 'var(--header-border)' }}
+          style={{ borderColor: 'var(--global-border)' }}
         >
-          <div className="px-4 pt-2 pb-4 bg-[var(--header-bg)] shadow-sm">
+          <div className="px-4 pt-2 pb-4 bg-[var(--global-bg)] shadow-sm">
             <Navigation vertical>
               {headerData.links.map((link) => (
                 <NavLink key={link.href} href={link.href}>

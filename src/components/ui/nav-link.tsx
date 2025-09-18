@@ -8,7 +8,7 @@ export default function NavLink({ href, children }: { href: string; children: Re
             <Link
                 href={href}
                 className="text-sm md:text-base block"
-                style={{ color: 'var(--header-text)' }}
+                style={{ color: 'var(--global-text-primary)' }}
             >
                 <span className="hover:opacity-90">{children}</span>
             </Link>
