@@ -43,10 +43,6 @@
 
 :root {
   --radius: 0.625rem;
-  --header-bg: #ffffff;
-  --header-text: #65A3C0;
-  --header-text-muted: #6b7280;
-  --header-border: #e6e9ed;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -79,14 +75,15 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   
-  --footer-bg: #ffffff;
-  --footer-border: rgb(147 197 253);
-  --footer-text-primary: #2c5f7a;
-  --footer-text-secondary: #1e4d63;
-  --footer-accent: #337695;
-  --footer-accent-hover: #337695;
-  --footer-link-hover: #0c384d;
-  --footer-separator: #337695;
+  /* Aqui é o tema padrão (Azul) Munícipe e Admin */
+  --global-bg: #ffffff;                   /* Fundo principal das páginas */
+  --global-border: rgb(147 197 253);      /* Bordas e divisores */
+  --global-text-primary: #2c5f7a;         /* Texto principal - corpo */
+  --global-text-secondary: #1e4d63;       /* Texto secundário - títulos */
+  --global-accent: #337695;               /* Cor de destaque - botões, links */
+  --global-accent-hover: #337695;         /* Hover nos elementos de destaque */
+  --global-link-hover: #0c384d;           /* Hover específico para links de texto */
+  --global-separator: #337695;            /* Linhas divisórias verticais/horizontais */
 }
 
 .dark {
@@ -123,24 +120,26 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-.footer-theme-green {
-  --footer-border: #a7f3d0;
-  --footer-text-primary: #46A09B;
-  --footer-text-secondary: #46A09B;
-  --footer-accent: #10b981;
-  --footer-accent-hover: #059669;
-  --footer-link-hover: #047857;
-  --footer-separator: #10b981;
+/* Aqui é o tema verde (Operador) */
+.global-theme-green {
+  --global-border: #a7f3d0;               /* Bordas em verde claro */
+  --global-text-primary: #46A09B;         /* Texto principal - corpo */
+  --global-text-secondary: #46A09B;       /* Texto secundário - títulos */
+  --global-accent: #10b981;               /* Verde de destaque - botões, ícones */
+  --global-accent-hover: #059669;         /* Verde mais escuro no hover */
+  --global-link-hover: #047857;           /* Verde escuro para links */
+  --global-separator: #10b981;            /* Divisores em verde */
 }
 
-.footer-theme-purple {
-  --footer-border: #d8b4fe;
-  --footer-text-primary: #9558A9;
-  --footer-text-secondary: #9558A9;
-  --footer-accent: #a855f7;
-  --footer-accent-hover: #9333ea;
-  --footer-link-hover: #5d26bb;
-  --footer-separator: #a855f7;
+/* Aqui é o tema roxo (Secretário) */
+.global-theme-purple {
+  --global-border: #d8b4fe;               /* Bordas em roxo claro */
+  --global-text-primary: #9558A9;         /* Texto principal - corpo */
+  --global-text-secondary: #9558A9;       /* Texto secundário - títulos */
+  --global-accent: #a855f7;               /* Roxo de destaque - botões, ícones */
+  --global-accent-hover: #9333ea;         /* Roxo mais escuro no hover */
+  --global-link-hover: #5d26bb;           /* Roxo escuro para links */
+  --global-separator: #a855f7;            /* Divisores em roxo */
 }
 
 @layer base {
@@ -153,40 +152,20 @@
 }
 
 .site-header {
-  background: var(--header-bg);
+  background: var(--global-bg);
 }
+
 .site-header a {
-  color: var(--header-text-muted);
+  color: var(--global-text-primary);
 }
+
 .site-header a:hover {
-  color: var(--header-text);
+  color: var(--global-accent);
 }
 
 .site-header--inverted {
-  --header-text: #ffffff;
-  --header-text-muted: rgba(255,255,255,0.85);
-  --header-bg: transparent;
-  --header-border: transparent;
+  --global-text-primary: #ffffff;
+  --global-text-secondary: rgba(255,255,255,0.85);
+  --global-bg: transparent;
+  --global-border: transparent;
 }
-
-.header-theme-green {
-  --header-border: #a7f3d0;
-  --header-text: #56AFA1;
-  --header-text-muted: #46A09B;
-  --header-accent: #10b981;
-  --header-accent-hover: #059669;
-  --header-link-hover: #047857;
-  --header-separator: #10b981;
-}
-
-.header-theme-purple {
-  --header-border: #d8b4fe;
-  --header-text: #5B3C83;
-  --header-text-muted: #9558A9;
-  --header-accent: #a855f7;
-  --header-accent-hover: #9333ea;
-  --header-link-hover: #5d26bb;
-  --header-separator: #a855f7;
-}
-
-
