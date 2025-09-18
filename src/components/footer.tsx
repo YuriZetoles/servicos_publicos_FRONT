@@ -21,7 +21,7 @@ export default function Footer({ endereco, contato, theme = 'default' }: FooterP
   const themeClass = theme === 'green' ? 'global-theme-green' : theme === 'purple' ? 'global-theme-purple' : '';
   
   return (
-    <footer className={`border-t border-[var(--global-border)] bg-[var(--global-bg)] px-6 sm:px-6 lg:px-40 py-4 text-sm text-[var(--global-text-primary)] ${themeClass}`}>
+    <footer className={`border-t border-[var(--global-separator)]/30 bg-[var(--global-bg)] px-6 sm:px-6 lg:px-40 py-4 text-sm text-[var(--global-text-primary)] ${themeClass}`}>
       
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-center">
           <address className="md:flex-1 text-center md:text-left not-italic">

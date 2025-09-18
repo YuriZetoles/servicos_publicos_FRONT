@@ -31,7 +31,7 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
   const themeClass = theme === 'green' ? 'global-theme-green' : theme === 'purple' ? 'global-theme-purple' : '';
 
   return (
-    <header className={`${cls} ${themeClass}`} style={{ borderColor: 'var(--global-border)' }}>
+    <header className={`border-b border-[var(--global-separator)]/30 ${cls} ${themeClass}`}>
       <div className=" px-6 sm:px-6 lg:px-40">
         <div className="flex items-center justify-between" style={{ height: 64 }}>
           <div className="flex-shrink-0">
@@ -79,8 +79,7 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
 
       <div id="mobile-menu" className="md:hidden" aria-hidden={!open} suppressHydrationWarning>
         <div
-          className={`transform-origin-top transition-all duration-200 ease-in-out ${open ? 'opacity-100 scale-100 max-h-96' : 'opacity-0 scale-95 max-h-0'} overflow-hidden border-t`}
-          style={{ borderColor: 'var(--global-border)' }}
+          className={`transform-origin-top transition-all duration-200 ease-in-out ${open ? 'opacity-100 scale-100 max-h-96' : 'opacity-0 scale-95 max-h-0'} overflow-hidden border-t border-[var(--global-separator)]/30`}
         >
           <div className="px-4 pt-2 pb-4 bg-[var(--global-bg)] shadow-sm">
             <Navigation vertical>
@@ -96,4 +95,3 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
     </header>
   );
 }
-
