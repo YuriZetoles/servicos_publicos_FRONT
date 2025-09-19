@@ -1,6 +1,7 @@
 import { Plus } from "lucide-react";
+import { Button } from "./ui/button";
 
-interface CardDemandaProps {
+export interface CardDemandaProps {
     titulo: string;
     descricao: string;
     imagem: string;
@@ -8,7 +9,7 @@ interface CardDemandaProps {
 
 export default function CardDemanda({ titulo, descricao, imagem }: CardDemandaProps) {
     return (
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 hover:scale-105 transform">
+        <div className=" rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 hover:scale-105 transform">
           <div className="aspect-video overflow-hidden">
             <img
               src={imagem}
@@ -22,10 +23,10 @@ export default function CardDemanda({ titulo, descricao, imagem }: CardDemandaPr
             <p className="text-gray-600 text-sm leading-relaxed mb-6 text-center">
               {descricao}
             </p>
-            <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+            <Button size="lg" colorClass="w-full font-medium py-3 px-4 bg-[var(--global-text-primary)] text-[var(--global-bg)] hover:bg-[var(--global-text-secondary)]">
               <Plus className="w-4 h-4" />
               Criar demanda
-            </button>
+            </Button>
           </div>
         </div>
       );
