@@ -15,20 +15,7 @@ interface ColetaProps {
 export default function Coleta() {
   const [cards, setCards] = useState<ColetaProps[]>([]);
   const [loading, setLoading] = useState(true);
-  const [imageBlob, setImageBlob] = useState<string>('');
-
-  // Função para encontrar o último card cadastrado
-  const getLatestCard = (cards: ColetaProps[]) => {
-    if (cards.length === 0) return null;
-    
-    if (cards[0]?.createdAt) {
-      return cards.sort((a, b) => 
-        new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime()
-      )[0];
-    }
-    
-    return cards[cards.length - 1];
-  };
+  const [imageBlobs, setImageBlobs] = useState<{[key: string]: string}>({});
 
   const fetchImageAsBlob = async (cardId: string) => {
     try {
@@ -41,7 +28,8 @@ export default function Coleta() {
       
       if (response.ok) {
         const blob = await response.blob();
-        setImageBlob(URL.createObjectURL(blob));
+        const imageUrl = URL.createObjectURL(blob);
+        setImageBlobs(prev => ({ ...prev, [cardId]: imageUrl }));
       }
     } catch (error) {
       console.error('Erro ao buscar imagem:', error);
@@ -64,8 +52,10 @@ export default function Coleta() {
       
       if (result.data?.docs?.length > 0) {
         setCards(result.data.docs);
-        const lastCard = getLatestCard(result.data.docs);
-        if (lastCard) fetchImageAsBlob(lastCard._id);
+        // Busca as imagens para todos os cards
+        result.data.docs.forEach((card: ColetaProps) => {
+          fetchImageAsBlob(card._id);
+        });
       }
     } catch (error) {
       console.error('Erro ao buscar dados:', error);
@@ -86,20 +76,17 @@ export default function Coleta() {
     );
   }
 
-  const lastCard = getLatestCard(cards);
-  if (!lastCard) return null;
-
-  const imageUrl = imageBlob || lastCard.link_imagem;
-
   return (
-    <div className="min-h-screen flex justify-center items-center p-2 bg-gray-50">
-      <div className="w-full max-w-md">
-        <CardDemanda 
-          titulo={lastCard.titulo}
-          descricao={lastCard.descricao}
-          imagem={imageUrl}
-        />
-      </div>
+    <div className="flex flex-wrap gap-6 px-6 sm:px-8 lg:px-40 py-6">
+      {cards.map((card, index) => (
+        <div key={card._id} className="flex flex-col w-full sm:w-[calc(50%-1.5rem)] lg:w-[calc(33%-1rem)]">
+          <CardDemanda 
+            titulo={card.titulo}
+            descricao={card.descricao}
+            imagem={imageBlobs[card._id] || card.link_imagem}
+          />
+        </div>
+      ))}
     </div>
   );
 }
