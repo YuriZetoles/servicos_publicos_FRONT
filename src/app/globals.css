@@ -3,6 +3,25 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* 
+ * Classe utilitária para quebrar o texto com número limitado de linhas
+ * 
+ * Como usar:
+ * - .line-clamp-4: Limita o texto a 4 linhas, adiciona "..." no final
+ * 
+ * Usado para cards, descrições, etc, onde precisam ter altura fixa
+ * Serve para não quebrar layout quando os textos são muito longos
+ */
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
