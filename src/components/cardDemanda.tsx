@@ -13,12 +13,18 @@ export default function CardDemanda({ titulo, descricao, imagem, theme = 'defaul
 
   return (
     <div className={`w-[400px] h-[420px] rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300 hover:scale-105 transform flex flex-col ${themeClass}`}>
-      <div className="h-48 overflow-hidden flex-shrink-0">
-        <img
-          src={imagem}
-          alt={titulo}
-          className="w-full h-full object-cover"
-        />
+      <div className="h-48 overflow-hidden flex-shrink-0 bg-gray-100 flex items-center justify-center">
+        {imagem ? (
+          <img
+            src={imagem}
+            alt={titulo}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <div className="text-gray-400 text-center">
+            <div className="text-xs">Nenhuma imagem disponível</div>
+          </div>
+        )}
       </div>
       <div className="p-6 flex flex-col justify-between h-[240px]">
         <div className="flex flex-col">
