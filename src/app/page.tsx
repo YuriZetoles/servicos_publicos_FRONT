@@ -1,4 +1,5 @@
 import Banner from "@/components/banner";
+import Coleta from "./coleta/page";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
         className="mb-8"
       />
       */}
+      <Coleta />
     </div>
   );
 }
