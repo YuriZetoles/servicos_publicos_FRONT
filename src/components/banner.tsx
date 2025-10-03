@@ -9,16 +9,16 @@ export interface BannerProps {
   className?: string;
 }
 
-export default function Banner({ 
+export default function Banner({
   titulo,
   descricao,
   icone,
-  className 
+  className
 }: BannerProps) {
   return (
     <div className="w-full">
       {/* Banner principal */}
-      <div 
+      <div
         className={cn(
           "relative w-full h-48 md:h-56 overflow-hidden",
           className
@@ -28,10 +28,9 @@ export default function Banner({
           minHeight: 200,
         }}
       >
-        {/* Círculos decorativos animados com mais visibilidade */}
+        {/* Círculos decorativos */}
         <div className="absolute inset-0">
-          {/* Círculo extra grande superior direito */}
-          <div 
+          <div
             className="absolute -top-20 right-16 w-96 h-96 rounded-full opacity-25"
             style={{
               background: `radial-gradient(circle, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.05) 80%, transparent 100%)`,
@@ -39,9 +38,8 @@ export default function Banner({
               filter: 'blur(0.5px)',
             }}
           />
-          
-          {/* Círculo grande centro-direita */}
-          <div 
+
+          <div
             className="absolute top-6 right-28 w-64 h-64 rounded-full opacity-30"
             style={{
               background: `radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 40%, rgba(255,255,255,0.03) 70%, transparent 100%)`,
@@ -49,18 +47,16 @@ export default function Banner({
               filter: 'blur(0.3px)',
             }}
           />
-          
-          {/* Círculo médio superior centro */}
-          <div 
+
+          <div
             className="absolute top-2 right-1/2 w-32 h-32 rounded-full opacity-35"
             style={{
               background: `radial-gradient(circle, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.2) 30%, rgba(255,255,255,0.05) 60%, transparent 100%)`,
               animation: 'floatSmall 6s ease-in-out infinite 1s',
             }}
           />
-          
-          {/* Círculo grande fundo centro-esquerda */}
-          <div 
+
+          <div
             className="absolute -bottom-24 left-32 w-72 h-72 rounded-full opacity-20"
             style={{
               background: `radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.02) 80%, transparent 100%)`,
@@ -68,9 +64,8 @@ export default function Banner({
               filter: 'blur(0.4px)',
             }}
           />
-          
-          {/* Círculo gigante fundo direita */}
-          <div 
+
+          <div
             className="absolute -bottom-40 -right-32 w-[400px] h-[400px] rounded-full opacity-15"
             style={{
               background: `radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.08) 60%, rgba(255,255,255,0.01) 85%, transparent 100%)`,
@@ -78,18 +73,16 @@ export default function Banner({
               filter: 'blur(0.6px)',
             }}
           />
-          
-          {/* Círculo pequeno superior esquerda */}
-          <div 
+
+          <div
             className="absolute top-8 left-20 w-20 h-20 rounded-full opacity-40"
             style={{
               background: `radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.3) 25%, rgba(255,255,255,0.1) 50%, transparent 100%)`,
               animation: 'floatSmall2 5s ease-in-out infinite 0.5s',
             }}
           />
-          
-          {/* Círculo médio centro superior */}
-          <div 
+
+          <div
             className="absolute -top-8 left-1/3 w-48 h-48 rounded-full opacity-18"
             style={{
               background: `radial-gradient(circle, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.12) 45%, rgba(255,255,255,0.02) 75%, transparent 100%)`,
@@ -106,8 +99,8 @@ export default function Banner({
             <div className="w-20 h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-lg">
               {icone ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img 
-                  src={icone} 
+                <img
+                  src={icone}
                   alt="Ícone do serviço"
                   className="w-12 h-12 md:w-14 md:h-14 object-contain"
                   onError={(e) => {
@@ -123,7 +116,7 @@ export default function Banner({
                 </div>
               )}
             </div>
-            
+
             {/* Título e descrição */}
             <div className="flex-1">
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-normal text-white leading-tight mb-1">
@@ -138,7 +131,7 @@ export default function Banner({
           </div>
         </div>
 
-        {/* CSS para animações aprimoradas */}
+        {/* CSS para animações */}
         <style jsx>{`
           @keyframes floatBig {
             0%, 100% { 

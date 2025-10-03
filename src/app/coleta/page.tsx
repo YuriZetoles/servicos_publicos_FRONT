@@ -18,17 +18,17 @@ export default function Coleta() {
   const [cards, setCards] = useState<ColetaProps[]>([]);
   const [bannerData, setBannerData] = useState<ColetaProps | null>(null);
   const [loading, setLoading] = useState(true);
-  const [imageBlobs, setImageBlobs] = useState<{[key: string]: string}>({});
+  const [imageBlobs, setImageBlobs] = useState<{ [key: string]: string }>({});
 
   const fetchImageAsBlob = async (cardId: string) => {
     try {
       const token = process.env.NEXT_PUBLIC_API_TOKEN;
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5011';
-      
+
       const response = await fetch(`${apiUrl}/tipoDemanda/${cardId}/foto`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      
+
       if (response.ok) {
         const blob = await response.blob();
         const imageUrl = URL.createObjectURL(blob);
@@ -43,26 +43,26 @@ export default function Coleta() {
     try {
       const token = process.env.NEXT_PUBLIC_API_TOKEN;
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5011';
-      
+
       const response = await fetch(`${apiUrl}/tipoDemanda`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-      
+
       const result = await response.json();
-      
+
       if (result.data?.docs?.length > 0) {
-        // Separar dados: primeiro tipo "Coleta" para o banner, todos os itens para cards
+        // Pegar dados: primeiro tipo "Coleta" para o banner, todos os itens para cards
         const coletaItem = result.data.docs.find((item: ColetaProps) => item.tipo === 'Coleta');
         const allItems = result.data.docs; // Todos os itens vão para os cards
-        
+
         if (coletaItem) {
           setBannerData(coletaItem);
           fetchImageAsBlob(coletaItem._id);
         }
-        
+
         setCards(allItems);
         // Busca as imagens para todos os cards
         allItems.forEach((card: ColetaProps) => {
@@ -96,7 +96,7 @@ export default function Coleta() {
         icone={imageBlobs[bannerData?._id || ''] || "/trash-icon.svg"}
         className="mb-8"
       />
-      
+
       <div className="flex flex-wrap gap-12 justify-center px-6 py-6 max-w-[1400px] mx-auto">
         {cards.length === 0 && !loading && (
           <div className="text-center py-8">
@@ -104,7 +104,7 @@ export default function Coleta() {
           </div>
         )}
         {cards.map((card) => (
-          <CardDemanda 
+          <CardDemanda
             key={card._id}
             titulo={card.titulo}
             descricao={card.descricao}
