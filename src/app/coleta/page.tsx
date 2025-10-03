@@ -77,15 +77,17 @@ export default function Coleta() {
   }
 
   return (
-    <div className="flex flex-wrap gap-12 justify-center px-6 py-6 max-w-[1400px] mx-auto">
-      {cards.map((card, index) => (
-        <CardDemanda 
-          key={card._id}
-          titulo={card.titulo}
-          descricao={card.descricao}
-          imagem={imageBlobs[card._id] || card.link_imagem}
-        />
-      ))}
+    <div className="px-6 sm:px-6 lg:px-40 py-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-stretch">
+        {cards.map((card, index) => (
+          <CardDemanda 
+            key={card._id}
+            titulo={card.titulo}
+            descricao={card.descricao}
+            imagem={imageBlobs[card._id] || card.link_imagem}
+          />
+        ))}
+      </div>
     </div>
   );
 }
