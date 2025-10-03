@@ -89,11 +89,11 @@ export default function Coleta() {
   }
 
   return (
-    <div>
+    <div className="global-theme-green">
       <Banner
         titulo={bannerData?.tipo || "Coleta"}
+        descricao={bannerData?.descricao || "Serviços prestados com relação a coleta de restos de construção, entulho, lixos, vegetais e coleta de animais mortos."}
         icone={imageBlobs[bannerData?._id || ''] || "/trash-icon.svg"}
-        backgroundImage="/banner.png"
         className="mb-8"
       />
       
