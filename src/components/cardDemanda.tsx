@@ -42,7 +42,7 @@ export default function CardDemanda({ titulo, descricao, imagem, theme = 'defaul
           <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center line-clamp-2" data-test="card-demanda-titulo">
             {titulo}
           </h3>
-          <p className="text-gray-600 text-sm text-center mb-3 line-clamp-3 overflow-hidden flex-1" data-test="card-demanda-descricao">
+          <p className="text-gray-600 text-sm text-center mb-3 line-clamp-4" data-test="card-demanda-descricao">
             {descricao}
           </p>
         </div>
