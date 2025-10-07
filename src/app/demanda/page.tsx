@@ -93,7 +93,7 @@ export default function Demanda() {
       <Banner
         titulo={bannerData?.tipo || "Coleta"}
         descricao={bannerData?.descricao || "Serviços prestados com relação a coleta de restos de construção, entulho, lixos, vegetais e coleta de animais mortos."}
-        icone={imageBlobs[bannerData?._id || ''] || "/trash-icon.svg"}
+        icone={"/trash-icon.svg"}
         className="mb-8"
       />
       <div className="px-6 sm:px-6 lg:px-40 py-8" data-test="demanda-page-container">
