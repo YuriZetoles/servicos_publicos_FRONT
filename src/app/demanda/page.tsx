@@ -70,22 +70,23 @@ export default function Demanda() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50">
-        <div className="text-lg text-gray-600">Carregando...</div>
+      <div className="min-h-screen flex justify-center items-center bg-gray-50" data-test="demanda-loading-container">
+        <div className="text-lg text-gray-600" data-test="demanda-loading-message">Carregando...</div>
       </div>
     );
   }
 
   return (
-    <div className="px-6 sm:px-6 lg:px-40 py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-stretch">
+    <div className="px-6 sm:px-6 lg:px-40 py-8" data-test="demanda-page-container">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-stretch" data-test="demanda-cards-grid">
         {cards.map((card, index) => (
-          <CardDemanda 
-            key={card._id}
-            titulo={card.titulo}
-            descricao={card.descricao}
-            imagem={imageBlobs[card._id] || card.link_imagem}
-          />
+          <div key={card._id} data-test={`demanda-card-${card._id}`}>
+            <CardDemanda 
+              titulo={card.titulo}
+              descricao={card.descricao}
+              imagem={imageBlobs[card._id] || card.link_imagem}
+            />
+          </div>
         ))}
       </div>
     </div>
