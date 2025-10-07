@@ -94,7 +94,7 @@ export default function Demanda() {
         titulo={bannerData?.tipo || "Coleta"}
         descricao={bannerData?.descricao || "Serviços prestados com relação a coleta de restos de construção, entulho, lixos, vegetais e coleta de animais mortos."}
         icone={"/trash-icon.svg"}
-        className="mb-8"
+        className="mb-4"
       />
       <div className="px-6 sm:px-6 lg:px-40 py-8" data-test="demanda-page-container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-stretch" data-test="demanda-cards-grid">
