@@ -3,7 +3,7 @@
 import CardDemanda from "@/components/cardDemanda";
 import { useState, useEffect } from "react";
 
-interface ColetaProps {
+interface DemandaProps {
   titulo: string,
   descricao: string,
   link_imagem: string,
@@ -12,8 +12,8 @@ interface ColetaProps {
   updatedAt?: string
 }
 
-export default function Coleta() {
-  const [cards, setCards] = useState<ColetaProps[]>([]);
+export default function Demanda() {
+  const [cards, setCards] = useState<DemandaProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [imageBlobs, setImageBlobs] = useState<{[key: string]: string}>({});
 
@@ -53,7 +53,7 @@ export default function Coleta() {
       if (result.data?.docs?.length > 0) {
         setCards(result.data.docs);
         // Busca as imagens para todos os cards
-        result.data.docs.forEach((card: ColetaProps) => {
+        result.data.docs.forEach((card: DemandaProps) => {
           fetchImageAsBlob(card._id);
         });
       }
