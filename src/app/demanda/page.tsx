@@ -1,6 +1,7 @@
 "use client";
 
 import CardDemanda from "@/components/cardDemanda";
+import Banner from "@/components/banner";
 import { useState, useEffect, useCallback } from "react";
 
 interface DemandaProps {
@@ -17,17 +18,17 @@ export default function Demanda() {
   const [cards, setCards] = useState<DemandaProps[]>([]);
   const [bannerData, setBannerData] = useState<DemandaProps | null>(null);
   const [loading, setLoading] = useState(true);
-  const [imageBlobs, setImageBlobs] = useState<{[key: string]: string}>({});
+  const [imageBlobs, setImageBlobs] = useState<{ [key: string]: string }>({});
 
   const fetchImageAsBlob = async (cardId: string) => {
     try {
       const token = process.env.NEXT_PUBLIC_API_TOKEN;
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5011';
-      
+
       const response = await fetch(`${apiUrl}/tipoDemanda/${cardId}/foto`, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
-      
+
       if (response.ok) {
         const blob = await response.blob();
         const imageUrl = URL.createObjectURL(blob);
@@ -42,16 +43,16 @@ export default function Demanda() {
     try {
       const token = process.env.NEXT_PUBLIC_API_TOKEN;
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5011';
-      
+
       const response = await fetch(`${apiUrl}/tipoDemanda`, {
         headers: {
           'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
-      
+
       const result = await response.json();
-      
+
       if (result.data?.docs?.length > 0) {
         // Pegar dados: primeiro tipo "Coleta" para o banner, todos os itens para cards
         const demandaItem = result.data.docs.find((item: DemandaProps) => item.tipo === 'Coleta');
@@ -89,6 +90,12 @@ export default function Demanda() {
 
   return (
     <div data-test="demanda-page">
+      <Banner
+        titulo={bannerData?.tipo || "Coleta"}
+        descricao={bannerData?.descricao || "Serviços prestados com relação a coleta de restos de construção, entulho, lixos, vegetais e coleta de animais mortos."}
+        icone={imageBlobs[bannerData?._id || ''] || "/trash-icon.svg"}
+        className="mb-8"
+      />
       <div className="px-6 sm:px-6 lg:px-40 py-8" data-test="demanda-page-container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-stretch" data-test="demanda-cards-grid">
         {cards.map((card, index) => (
