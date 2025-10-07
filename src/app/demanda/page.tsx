@@ -4,7 +4,7 @@ import CardDemanda from "@/components/cardDemanda";
 import Banner from "@/components/banner";
 import { useState, useEffect, useCallback } from "react";
 
-interface ColetaProps {
+interface DemandaProps {
   titulo: string,
   descricao: string,
   link_imagem: string,
@@ -14,9 +14,9 @@ interface ColetaProps {
   updatedAt?: string
 }
 
-export default function Coleta() {
-  const [cards, setCards] = useState<ColetaProps[]>([]);
-  const [bannerData, setBannerData] = useState<ColetaProps | null>(null);
+export default function Demanda() {
+  const [cards, setCards] = useState<DemandaProps[]>([]);
+  const [bannerData, setBannerData] = useState<DemandaProps | null>(null);
   const [loading, setLoading] = useState(true);
   const [imageBlobs, setImageBlobs] = useState<{ [key: string]: string }>({});
 
@@ -55,17 +55,17 @@ export default function Coleta() {
 
       if (result.data?.docs?.length > 0) {
         // Pegar dados: primeiro tipo "Coleta" para o banner, todos os itens para cards
-        const coletaItem = result.data.docs.find((item: ColetaProps) => item.tipo === 'Coleta');
+        const demandaItem = result.data.docs.find((item: DemandaProps) => item.tipo === 'Coleta');
         const allItems = result.data.docs; // Todos os itens vão para os cards
 
-        if (coletaItem) {
-          setBannerData(coletaItem);
-          fetchImageAsBlob(coletaItem._id);
+        if (demandaItem) {
+          setBannerData(demandaItem);
+          fetchImageAsBlob(demandaItem._id);
         }
 
         setCards(allItems);
         // Busca as imagens para todos os cards
-        allItems.forEach((card: ColetaProps) => {
+        allItems.forEach((card: DemandaProps) => {
           fetchImageAsBlob(card._id);
         });
       }
@@ -82,35 +82,32 @@ export default function Coleta() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50">
-        <div className="text-lg text-gray-600">Carregando...</div>
+      <div className="min-h-screen flex justify-center items-center bg-gray-50" data-test="demanda-loading-container">
+        <div className="text-lg text-gray-600" data-test="demanda-loading-message">Carregando...</div>
       </div>
     );
   }
 
   return (
-    <div className="global-theme-green">
+    <div data-test="demanda-page">
       <Banner
         titulo={bannerData?.tipo || "Coleta"}
         descricao={bannerData?.descricao || "Serviços prestados com relação a coleta de restos de construção, entulho, lixos, vegetais e coleta de animais mortos."}
-        icone={imageBlobs[bannerData?._id || ''] || "/trash-icon.svg"}
-        className="mb-8"
+        icone={"/trash-icon.svg"}
+        className="mb-4"
       />
-
-      <div className="flex flex-wrap gap-12 justify-center px-6 py-6 max-w-[1400px] mx-auto">
-        {cards.length === 0 && !loading && (
-          <div className="text-center py-8">
-            <p className="text-gray-500">Nenhum card encontrado</p>
+      <div className="px-6 sm:px-6 lg:px-40 py-8" data-test="demanda-page-container">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-stretch" data-test="demanda-cards-grid">
+        {cards.map((card, index) => (
+          <div key={card._id} data-test={`demanda-card-${card._id}`}>
+            <CardDemanda 
+              titulo={card.titulo}
+              descricao={card.descricao}
+              imagem={imageBlobs[card._id] || card.link_imagem}
+            />
           </div>
-        )}
-        {cards.map((card) => (
-          <CardDemanda
-            key={card._id}
-            titulo={card.titulo}
-            descricao={card.descricao}
-            imagem={imageBlobs[card._id] || card.link_imagem}
-          />
         ))}
+        </div>
       </div>
     </div>
   );
