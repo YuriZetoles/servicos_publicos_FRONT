@@ -157,7 +157,7 @@ function Sidebar({
         className={cn(
           "relative w-(--sidebar-width) bg-transparent transition-[width] duration-200 ease-linear",
 
-          variant === "floating" || variant === "inset"
+          variant === "floating"
             ? "group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4)))]"
             : "group-data-[collapsible=icon]:w-(--sidebar-width-icon)",
         )}
@@ -169,9 +169,9 @@ function Sidebar({
           side === "left"
             ? "left-0 group-data-[collapsible=offcanvas]:left-[calc(var(--sidebar-width)*-1)]"
             : "right-0 group-data-[collapsible=offcanvas]:right-[calc(var(--sidebar-width)*-1)]",
-          variant === "floating" || variant === "inset"
+          variant === "floating"
             ? "p-2 group-data-[collapsible=icon]:w-[calc(var(--sidebar-width-icon)+(--spacing(4))+2px)]"
-            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r ",
+            : "group-data-[collapsible=icon]:w-(--sidebar-width-icon) group-data-[side=left]:border-r group-data-[side=left]:border-[var(--global-separator)]/30",
           className,
         )}
         {...props}
@@ -285,7 +285,7 @@ function SidebarGroupLabel({
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        "text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 [&>svg]:size-4 [&>svg]:shrink-0",
+        "text-sidebar-foreground/70 ring-sidebar-ring flex h-8 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear text-[var(--global-text-primary)] [&>svg]:size-4 [&>svg]:shrink-0",
         "group-data-[collapsible=icon]:-mt-8 group-data-[collapsible=icon]:opacity-0",
         className,
       )}
@@ -331,13 +331,11 @@ function SidebarMenuItem({ className, ...props }: React.ComponentProps<"li">) {
 }
 
 const sidebarMenuButtonVariants = cva(
-  "peer/menu-button flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden ring-sidebar-ring transition-[width,height,padding] hover:bg-[rgb(147,197,253)] hover:text-[#1e4d63] focus-visible:ring-2 active:bg-[rgb(147,197,253)] active:text-[#1e4d63] disabled:pointer-events-none disabled:opacity-50 group-has-data-[sidebar=menu-action]/menu-item:pr-8 aria-disabled:pointer-events-none aria-disabled:opacity-50 data-[active=true]:bg-[rgb(147,197,253)] data-[active=true]:font-medium data-[active=true]:text-[#1e4d63] data-[state=open]:hover:bg-[rgb(147,197,253)] data-[state=open]:hover:text-[#1e4d63] group-data-[collapsible=icon]:size-8! group-data-[collapsible=icon]:p-2! [&>span:last-child]:truncate [&>svg]:size-4 [&>svg]:shrink-0",
+  "flex w-full items-center gap-2 overflow-hidden rounded-md p-2 text-left text-sm outline-hidden border-0 text-[var(--global-text-primary)] data-[active=true]:bg-[var(--global-text-primary)] data-[active=true]:text-[var(--global-bg)] data-[state=open]:hover:bg-[var(--global-text-primary)] data-[state=open]:hover:text-[var(--global-bg)] [&>svg]:size-4 [&>svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "hover:bg-[var(--global-text-primary)] hover:text-[var(--global-bg)]",
-        outline:
-          "bg-background shadow-[0_0_0_1px_hsl(var(--sidebar-border))] hover:bg-[rgb(147,197,253)] hover:text-[var(--global-bg)] hover:shadow-[0_0_0_1px_rgb(147,197,253)]",
+        default: "hover:bg-[var(--global-text-primary)] hover:text-[var(--global-bg)]"
       },
       size: {
         default: "h-8 text-sm",
