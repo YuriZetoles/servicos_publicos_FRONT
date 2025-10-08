@@ -45,9 +45,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <Header />
+        <div className="relative z-20">
+          <Header />
+        </div>
           {children}
-        <Footer endereco={dadosFooter.endereco} contato={dadosFooter.contato} />
+        <div className="relative z-20">
+          <Footer endereco={dadosFooter.endereco} contato={dadosFooter.contato} />
+        </div>
       </body>
     </html>
   );
