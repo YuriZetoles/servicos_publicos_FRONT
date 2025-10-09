@@ -36,17 +36,17 @@ export default function CadastroPage() {
       <Banner
         icone={User}
         titulo="Cadastro do Residente de Vilhena-RO"
-        className="mb-8"
+        className="mb-6 md:mb-8"
       />
 
-      <div className="px-6 sm:px-6 lg:px-40 py-8">
-        <form className="mx-auto space-y-8">
-            <div className="space-y-6">
-                <h2 className="text-2xl font-semibold text-[var(--global-text-primary)] mb-6">
+      <div className="px-6 sm:px-6 lg:px-40 py-6 md:py-8">
+        <form className="mx-auto space-y-6 md:space-y-8 max-w-7xl">
+            <div className="space-y-4 md:space-y-6">
+                <h2 className="text-xl md:text-2xl font-semibold text-[var(--global-text-primary)] mb-4 md:mb-6">
                     Dados Pessoais
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                 <div className="space-y-2">
                     <label htmlFor="nomeCivil" className="block text-sm font-medium text-[var(--global-text-primary)]">
                         Nome civil completo
@@ -116,12 +116,12 @@ export default function CadastroPage() {
               </div>
             </div>
 
-            <div className="space-y-6">
-                <h2 className="text-2xl font-semibold text-[var(--global-text-primary)] mb-6">
+            <div className="space-y-4 md:space-y-6">
+                <h2 className="text-xl md:text-2xl font-semibold text-[var(--global-text-primary)] mb-4 md:mb-6">
                     Endereço
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="space-y-2">
                         <label htmlFor="cep" className="block text-sm font-medium text-[var(--global-text-primary)]">
                             CEP
@@ -182,36 +182,34 @@ export default function CadastroPage() {
                         />
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="space-y-2">
-                            <label htmlFor="cidade" className="block text-sm font-medium text-[var(--global-text-primary)]">
-                                Cidade
-                            </label>
-                            <Input
-                                id="cidade"
-                                type="text"
-                                placeholder="Vilhena"
-                                required
-                            />
-                        </div>
+                    <div className="space-y-2">
+                        <label htmlFor="cidade" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Cidade
+                        </label>
+                        <Input
+                            id="cidade"
+                            type="text"
+                            placeholder="Vilhena"
+                            required
+                        />
+                    </div>
 
-                        <div className="space-y-2">
-                            <label htmlFor="estado" className="block text-sm font-medium text-[var(--global-text-primary)]">
-                                Estado
-                            </label>
-                            <Input
-                                id="estado"
-                                type="text"
-                                placeholder="RO"
-                                required
-                            />
-                        </div>
+                    <div className="space-y-2">
+                        <label htmlFor="estado" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Estado
+                        </label>
+                        <Input
+                            id="estado"
+                            type="text"
+                            placeholder="RO"
+                            required
+                        />
                     </div>
                 </div>
             </div>
 
-            <div className="space-y-6">
-                <h2 className="text-2xl font-semibold text-[var(--global-text-primary)] mb-6">
+            <div className="space-y-4 md:space-y-6">
+                <h2 className="text-xl md:text-2xl font-semibold text-[var(--global-text-primary)] mb-4 md:mb-6">
                     Senha
                 </h2>
 
@@ -227,7 +225,7 @@ export default function CadastroPage() {
                         />
                     </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="space-y-2">
                         <label htmlFor="senha" className="block text-sm font-medium text-[var(--global-text-primary)]">
                             Senha
@@ -272,8 +270,8 @@ export default function CadastroPage() {
                 </div>
             </div>
         </form>
-        <div className="flex justify-center p-12">
-            <Button size="lg" colorClass="font-medium py-2 px-13 bg-[var(--global-text-primary)] text-[var(--global-bg)] hover:bg-[var(--global-text-secondary)]">Cadastrar</Button>
+        <div className="pt-6 pb-8 md:pt-8 md:pb-12 md:flex md:justify-center">
+            <Button size="lg" colorClass="w-full md:w-auto font-medium py-2 px-8 md:px-12 bg-[var(--global-text-primary)] text-[var(--global-bg)] hover:bg-[var(--global-text-secondary)]">Cadastrar</Button>
         </div>
       </div>
     </div>
