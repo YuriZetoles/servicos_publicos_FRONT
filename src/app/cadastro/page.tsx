@@ -205,6 +205,52 @@ export default function CadastroPage() {
                     </div>
                 </div>
             </div>
+
+            <div className="space-y-6">
+                <h2 className="text-2xl font-semibold text-[var(--global-text-primary)] mb-6">
+                    Senha
+                </h2>
+
+                <div className="space-y-2">
+                        <label htmlFor="confirmarEmail" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Confirmar e-mail
+                        </label>
+                        <Input
+                            id="confirmarEmail"
+                            type="email"
+                            placeholder="lucas.silva@gmail.com"
+                            required
+                        />
+                    </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                        <label htmlFor="senha" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Senha
+                        </label>
+                        <Input
+                            id="senha"
+                            type="password"
+                            placeholder="***********"
+                            required
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="confirmarSenha" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Confirmar senha
+                        </label>
+                        <Input
+                            id="confirmarSenha"
+                            type="password"
+                            placeholder="***********"
+                            required
+                        />
+                    </div>
+
+
+                </div>
+            </div>
         </form>
       </div>
     </div>
