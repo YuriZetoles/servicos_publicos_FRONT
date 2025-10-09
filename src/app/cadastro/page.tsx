@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Banner from "@/components/banner";
 import { User } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 interface FormData {
   nomeCivil: string;
@@ -26,26 +27,6 @@ interface FormData {
 }
 
 export default function CadastroPage() {
-  const [formData, setFormData] = useState<FormData>({
-    nomeCivil: "Lucas Silva",
-    nomeSocial: "Lucas Silva",
-    email: "lucas.silva@gmail.com",
-    dataNascimento: "12/09/1999",
-    cpf: "99999999999",
-    celular: "(69) 98125-2365",
-    cep: "76980-632",
-    rua: "Av. Presidente Nasser",
-    bairro: "Jardim das Oliveira",
-    numero: "1240",
-    complemento: "Av. Presidente Nasser",
-    cidade: "Vilhena",
-    estado: "RO",
-    confirmarEmail: "lucas.silva@gmail.com",
-    senha: "***********",
-    confirmarSenha: "***********",
-  });
-
-
   return (
     <div className="min-h-screen bg-[var(--global-bg)]">
       <Banner
@@ -53,6 +34,29 @@ export default function CadastroPage() {
         titulo="Cadastro do Residente de Vilhena-RO"
         className="mb-8"
       />
+
+      <div className="px-6 sm:px-6 lg:px-40 py-8">
+        <form className="mx-auto space-y-8">
+            <div className="space-y-6">
+                <h2 className="text-2xl font-semibold text-[var(--global-text-primary)] mb-6">
+                    Dados Pessoais
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                    <label htmlFor="nomeCivil" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                        Nome civil completo
+                    </label>
+                    <Input
+                        id="nomeCivil"
+                        type="text"
+                        placeholder="Lucas Silva"
+                    />
+                </div>
+              </div>
+            </div>
+        </form>
+      </div>
     </div>
   );
 }
