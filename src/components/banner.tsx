@@ -1,11 +1,12 @@
 "use client";
 import * as React from "react";
 import { cn } from "@/lib/utils";
+import { LucideIcon } from "lucide-react";
 
 export interface BannerProps {
   titulo: string;
   descricao?: string;
-  icone?: string;
+  icone?: string | LucideIcon;
   className?: string;
 }
 
@@ -97,16 +98,23 @@ export default function Banner({
             {/* Ícone circular - maior e mais elegante */}
             <div className="w-24 h-24 md:w-32 md:h-32 bg-white rounded-full flex items-center justify-center flex-shrink-0 shadow-2xl border-4 border-white/20">
               {icone ? (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  src={icone}
-                  alt="Ícone do serviço"
-                  className="w-14 h-14 md:w-18 md:h-18 object-contain"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = 'none';
-                  }}
-                />
+                typeof icone === 'string' ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={icone}
+                    alt="Ícone do serviço"
+                    className="w-14 h-14 md:w-18 md:h-18 object-contain"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = 'none';
+                    }}
+                  />
+                ) : (
+                  React.createElement(icone, {
+                    className: "w-14 h-14 md:w-20 md:h-20",
+                    style: { color: 'var(--global-accent)' }
+                  })
+                )
               ) : (
                 <div className="w-14 h-14 md:w-18 md:h-18 bg-gray-100 rounded-full flex items-center justify-center">
                   <svg className="w-8 h-8 md:w-10 md:h-10 text-gray-500" fill="currentColor" viewBox="0 0 20 20">
