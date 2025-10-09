@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Banner from "@/components/banner";
-import { User } from "lucide-react";
+import { User, Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 interface FormData {
   nomeCivil: string;
@@ -27,6 +28,9 @@ interface FormData {
 }
 
 export default function CadastroPage() {
+  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [mostrarConfirmarSenha, setMostrarConfirmarSenha] = useState(false);
+
   return (
     <div className="min-h-screen bg-[var(--global-bg)]">
       <Banner
@@ -228,30 +232,49 @@ export default function CadastroPage() {
                         <label htmlFor="senha" className="block text-sm font-medium text-[var(--global-text-primary)]">
                             Senha
                         </label>
-                        <Input
-                            id="senha"
-                            type="password"
-                            placeholder="***********"
-                            required
-                        />
+                        <div className="relative">
+                            <Input
+                                id="senha"
+                                type={mostrarSenha ? "text" : "password"}
+                                placeholder="***********"
+                                required
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setMostrarSenha(!mostrarSenha)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--global-text-primary)] cursor-pointer"
+                            >
+                                {mostrarSenha ? <EyeOff size={20} /> : <Eye size={20} />}
+                            </button>
+                        </div>
                     </div>
 
                     <div className="space-y-2">
                         <label htmlFor="confirmarSenha" className="block text-sm font-medium text-[var(--global-text-primary)]">
                             Confirmar senha
                         </label>
-                        <Input
-                            id="confirmarSenha"
-                            type="password"
-                            placeholder="***********"
-                            required
-                        />
+                        <div className="relative">
+                            <Input
+                                id="confirmarSenha"
+                                type={mostrarConfirmarSenha ? "text" : "password"}
+                                placeholder="***********"
+                                required
+                            />
+                            <button
+                                type="button"
+                                onClick={() => setMostrarConfirmarSenha(!mostrarConfirmarSenha)}
+                                className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--global-text-primary)] cursor-pointer"
+                            >
+                                {mostrarConfirmarSenha ? <EyeOff size={20} /> : <Eye size={20} />}
+                            </button>
+                        </div>
                     </div>
-
-
                 </div>
             </div>
         </form>
+        <div className="flex justify-center p-12">
+            <Button size="lg" colorClass="font-medium py-2 px-13 bg-[var(--global-text-primary)] text-[var(--global-bg)] hover:bg-[var(--global-text-secondary)]">Cadastrar</Button>
+        </div>
       </div>
     </div>
   );
