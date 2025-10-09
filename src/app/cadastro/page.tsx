@@ -53,6 +53,62 @@ export default function CadastroPage() {
                         placeholder="Lucas Silva"
                     />
                 </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="nomeSocial" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                        Nome social
+                    </label>
+                    <Input
+                        id="nomeSocial"
+                        type="text"
+                        placeholder="Lucas Silva"
+                    />
+                </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                        E-mail
+                    </label>
+                    <Input
+                        id="email"
+                        type="email"
+                        placeholder="lucas.silva@gmail.com"
+                    />
+                </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="dataNascimento" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                        Data de nascimento
+                    </label>
+                    <Input
+                        id="dataNascimento"
+                        type="date"
+                        placeholder="12/09/1999"
+                    />
+                </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="cpf" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                        CPF
+                    </label>
+                    <Input
+                        id="cpf"
+                        type="text"
+                        placeholder="999.999.999-99"
+                    />
+                </div>
+
+                <div className="space-y-2">
+                    <label htmlFor="celular" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                        Celular
+                    </label>
+                    <Input
+                        id="celular"
+                        type="tel"
+                        placeholder="(69) 98125-2365"
+                        required
+                    />
+                </div>
               </div>
             </div>
         </form>
