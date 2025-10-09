@@ -111,6 +111,100 @@ export default function CadastroPage() {
                 </div>
               </div>
             </div>
+
+            <div className="space-y-6">
+                <h2 className="text-2xl font-semibold text-[var(--global-text-primary)] mb-6">
+                    Endereço
+                </h2>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                        <label htmlFor="cep" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            CEP
+                        </label>
+                        <Input
+                            id="cep"
+                            type="text"
+                            placeholder="76980-632"
+                            required
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="rua" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Rua
+                        </label>
+                        <Input
+                            id="rua"
+                            type="text"
+                            placeholder="Av. Presidente Nasser"
+                            required
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="bairro" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Bairro
+                        </label>
+                        <Input
+                            id="bairro"
+                            type="text"
+                            placeholder="Jardim das Oliveira"
+                            required
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="numero" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Número
+                        </label>
+                        <Input
+                            id="numero"
+                            type="text"
+                            placeholder="1240"
+                            required
+                        />
+                    </div>
+
+                    <div className="space-y-2">
+                        <label htmlFor="complemento" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                            Complemento
+                        </label>
+                        <Input
+                            id="complemento"
+                            type="text"
+                            placeholder="Av. Presidente Nasser"
+                            required
+                        />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div className="space-y-2">
+                            <label htmlFor="cidade" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                                Cidade
+                            </label>
+                            <Input
+                                id="cidade"
+                                type="text"
+                                placeholder="Vilhena"
+                                required
+                            />
+                        </div>
+
+                        <div className="space-y-2">
+                            <label htmlFor="estado" className="block text-sm font-medium text-[var(--global-text-primary)]">
+                                Estado
+                            </label>
+                            <Input
+                                id="estado"
+                                type="text"
+                                placeholder="RO"
+                                required
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
         </form>
       </div>
     </div>
