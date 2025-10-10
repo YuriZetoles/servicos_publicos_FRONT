@@ -40,7 +40,7 @@ export default function CadastroPage() {
       />
 
       <div className="px-6 sm:px-6 lg:px-40 py-6 md:py-8">
-        <form className="mx-auto space-y-6 md:space-y-8 max-w-7xl">
+        <form className="mx-auto space-y-6 md:space-y-8 max-w-7xl" data-test="form-cadastro">
             <div className="space-y-4 md:space-y-6">
                 <h2 className="text-xl md:text-2xl font-semibold text-[var(--global-text-primary)] mb-4 md:mb-6">
                     Dados Pessoais
@@ -55,6 +55,7 @@ export default function CadastroPage() {
                         id="nomeCivil"
                         type="text"
                         placeholder="Lucas Silva"
+                        data-test="input-nome-civil"
                     />
                 </div>
 
@@ -66,6 +67,7 @@ export default function CadastroPage() {
                         id="nomeSocial"
                         type="text"
                         placeholder="Lucas Silva"
+                        data-test="input-nome-social"
                     />
                 </div>
 
@@ -77,6 +79,7 @@ export default function CadastroPage() {
                         id="email"
                         type="email"
                         placeholder="lucas.silva@gmail.com"
+                        data-test="input-email"
                     />
                 </div>
 
@@ -88,6 +91,7 @@ export default function CadastroPage() {
                         id="dataNascimento"
                         type="date"
                         placeholder="12/09/1999"
+                        data-test="input-data-nascimento"
                     />
                 </div>
 
@@ -99,6 +103,7 @@ export default function CadastroPage() {
                         id="cpf"
                         type="text"
                         placeholder="999.999.999-99"
+                        data-test="input-cpf"
                     />
                 </div>
 
@@ -111,6 +116,7 @@ export default function CadastroPage() {
                         type="tel"
                         placeholder="(69) 98125-2365"
                         required
+                        data-test="input-celular"
                     />
                 </div>
               </div>
@@ -131,6 +137,7 @@ export default function CadastroPage() {
                             type="text"
                             placeholder="76980-632"
                             required
+                            data-test="input-cep"
                         />
                     </div>
 
@@ -143,6 +150,7 @@ export default function CadastroPage() {
                             type="text"
                             placeholder="Av. Presidente Nasser"
                             required
+                            data-test="input-rua"
                         />
                     </div>
 
@@ -155,6 +163,7 @@ export default function CadastroPage() {
                             type="text"
                             placeholder="Jardim das Oliveira"
                             required
+                            data-test="input-bairro"
                         />
                     </div>
 
@@ -167,6 +176,7 @@ export default function CadastroPage() {
                             type="text"
                             placeholder="1240"
                             required
+                            data-test="input-numero"
                         />
                     </div>
 
@@ -179,6 +189,7 @@ export default function CadastroPage() {
                             type="text"
                             placeholder="Av. Presidente Nasser"
                             required
+                            data-test="input-complemento"
                         />
                     </div>
 
@@ -191,6 +202,7 @@ export default function CadastroPage() {
                             type="text"
                             placeholder="Vilhena"
                             required
+                            data-test="input-cidade"
                         />
                     </div>
 
@@ -203,6 +215,7 @@ export default function CadastroPage() {
                             type="text"
                             placeholder="RO"
                             required
+                            data-test="input-estado"
                         />
                     </div>
                 </div>
@@ -222,6 +235,7 @@ export default function CadastroPage() {
                             type="email"
                             placeholder="lucas.silva@gmail.com"
                             required
+                            data-test="input-confirmar-email"
                         />
                     </div>
 
@@ -236,11 +250,13 @@ export default function CadastroPage() {
                                 type={mostrarSenha ? "text" : "password"}
                                 placeholder="***********"
                                 required
+                                data-test="input-senha"
                             />
                             <button
                                 type="button"
                                 onClick={() => setMostrarSenha(!mostrarSenha)}
                                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--global-text-primary)] cursor-pointer"
+                                data-test="toggle-mostrar-senha"
                             >
                                 {mostrarSenha ? <EyeOff size={20} /> : <Eye size={20} />}
                             </button>
@@ -257,11 +273,13 @@ export default function CadastroPage() {
                                 type={mostrarConfirmarSenha ? "text" : "password"}
                                 placeholder="***********"
                                 required
+                                data-test="input-confirmar-senha"
                             />
                             <button
                                 type="button"
                                 onClick={() => setMostrarConfirmarSenha(!mostrarConfirmarSenha)}
                                 className="absolute right-3 top-1/2 -translate-y-1/2 text-[var(--global-text-primary)] cursor-pointer"
+                                data-test="toggle-mostrar-confirmar-senha"
                             >
                                 {mostrarConfirmarSenha ? <EyeOff size={20} /> : <Eye size={20} />}
                             </button>
@@ -271,7 +289,7 @@ export default function CadastroPage() {
             </div>
         </form>
         <div className="pt-6 pb-8 md:pt-8 md:pb-12 md:flex md:justify-center">
-            <Button size="lg" colorClass="w-full md:w-auto font-medium py-2 px-8 md:px-12 bg-[var(--global-text-primary)] text-[var(--global-bg)] hover:bg-[var(--global-text-secondary)]">Cadastrar</Button>
+            <Button size="lg" colorClass="w-full md:w-auto font-medium py-2 px-8 md:px-12 bg-[var(--global-text-primary)] text-[var(--global-bg)] hover:bg-[var(--global-text-secondary)]" data-test="button-cadastrar">Cadastrar</Button>
         </div>
       </div>
     </div>
