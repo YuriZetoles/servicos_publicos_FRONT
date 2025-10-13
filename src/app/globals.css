@@ -103,7 +103,8 @@
   --global-accent-hover: #337695;         /* Hover nos elementos de destaque */
   --global-link-hover: #0c384d;           /* Hover específico para links de texto */
   --global-separator: #337695;            /* Linhas divisórias verticais/horizontais */
-  --global-placeholder: #a0aec0;          /* Cinza claro para placeholder */
+  --global-placeholder: #a0aec0; 
+  --global-bg-select: #acb3bb44;        
 }
 
 .dark {
