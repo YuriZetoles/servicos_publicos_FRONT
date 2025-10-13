@@ -104,7 +104,7 @@
   --global-link-hover: #0c384d;           /* Hover específico para links de texto */
   --global-separator: #337695;            /* Linhas divisórias verticais/horizontais */
   --global-placeholder: #a0aec0; 
-  --global-bg-select: #acb3bb44;        
+  --global-bg-select: #caccce26;        
 }
 
 .dark {

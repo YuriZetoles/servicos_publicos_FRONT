@@ -4,9 +4,64 @@ import { useState } from "react";
 import Banner from "@/components/banner";
 import { ChevronDown, ChevronLeft, ChevronRight, ClipboardList, Filter } from "lucide-react";
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "@/components/ui/select";
+import CardPedido, { Pedido } from "@/components/cardPedido";
+
+const pedidosMock: Pedido[] = [
+  {
+    id: "1",
+    titulo: "Demanda sobre Iluminação",
+    status: "aceito",
+    progresso: {
+      aprovado: true,
+      emProgresso: true,
+      concluido: false,
+    },
+  },
+  {
+    id: "2",
+    titulo: "Demanda sobre Iluminação",
+    status: "aceito",
+    progresso: {
+      aprovado: true,
+      emProgresso: true,
+      concluido: false,
+    },
+  },
+  {
+    id: "3",
+    titulo: "Demanda sobre Iluminação",
+    status: "aceito",
+    progresso: {
+      aprovado: true,
+      emProgresso: true,
+      concluido: false,
+    },
+  },
+  {
+    id: "4",
+    titulo: "Demanda sobre Iluminação",
+    status: "aceito",
+    progresso: {
+      aprovado: true,
+      emProgresso: true,
+      concluido: true,
+    },
+  },
+  {
+    id: "5",
+    titulo: "Demanda sobre Iluminação",
+    status: "recusado",
+  },
+  {
+    id: "6",
+    titulo: "Demanda sobre Iluminação",
+    status: "recusado",
+  },
+];
 
 export default function MeusPedidosPage() {
   const [filtroSelecionado, setFiltroSelecionado] = useState("todos");
+  const [pedidos, setPedidos] = useState(pedidosMock);
 
   const handleFiltroChange = (value: string) => {
     setFiltroSelecionado(value);
@@ -39,6 +94,16 @@ export default function MeusPedidosPage() {
             </div>
           </div>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 mb-8">
+            {pedidos.map((pedido) => (
+              <CardPedido
+                key={pedido.id}
+                pedido={pedido}
+              />
+            ))}
+        </div>
+
       </div>
     </div>
   );
