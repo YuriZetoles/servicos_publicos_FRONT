@@ -94,7 +94,7 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   
-  /* Aqui é o tema padrão (Azul) Munícipe e Admin */
+  /* tema padrão (Azul) Munícipe e Admin */
   --global-bg: #ffffff;                   /* Fundo principal das páginas */
   --global-border: rgb(147 197 253);      /* Bordas e divisores */
   --global-text-primary: #2c5f7a;         /* Texto principal - corpo */
@@ -103,6 +103,7 @@
   --global-accent-hover: #337695;         /* Hover nos elementos de destaque */
   --global-link-hover: #0c384d;           /* Hover específico para links de texto */
   --global-separator: #337695;            /* Linhas divisórias verticais/horizontais */
+  --global-placeholder: #a0aec0;          /* Cinza claro para placeholder */
 }
 
 .dark {
@@ -139,7 +140,7 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* Aqui é o tema verde (Operador) */
+/* tema verde (Operador) */
 .global-theme-green {
   --global-border: #a7f3d0;               /* Bordas em verde claro */
   --global-text-primary: #46A09B;         /* Texto principal - corpo */
@@ -150,7 +151,7 @@
   --global-separator: #10b981;            /* Divisores em verde */
 }
 
-/* Aqui é o tema roxo (Secretário) */
+/* tema roxo (Secretário) */
 .global-theme-purple {
   --global-border: #d8b4fe;               /* Bordas em roxo claro */
   --global-text-primary: #9558A9;         /* Texto principal - corpo */
@@ -167,6 +168,13 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  
+  /* Placeholder */
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--global-placeholder);
+    opacity: 1;
   }
 }
 
