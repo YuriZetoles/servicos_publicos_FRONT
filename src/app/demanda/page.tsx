@@ -1,3 +1,5 @@
+// src/app/demanda/page.tsx
+
 "use client";
 
 import CardDemanda from "@/components/cardDemanda";
@@ -5,7 +7,7 @@ import Banner from "@/components/banner";
 import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import { getAccessToken } from "@/lib/auth";
+import { getAccessToken } from "@/hooks/useAuthMutations";
 
 interface DemandaProps {
   titulo: string,
