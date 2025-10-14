@@ -1,10 +1,18 @@
+// src/components/ui/nav-link.tsx
+
 "use client";
 import Link from "next/link";
 import React from "react";
 
-export default function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
+interface NavLinkProps {
+    href: string;
+    children: React.ReactNode;
+    'data-test'?: string;
+}
+
+export default function NavLink({ href, children, 'data-test': dataTest }: NavLinkProps) {
     return (
-        <li className="list-none">
+        <li className="list-none" data-test={dataTest}>
             <Link
                 href={href}
                 className="text-sm md:text-base block"
