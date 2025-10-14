@@ -1,4 +1,5 @@
-// components/LoginTypeSelector.tsx
+// src/components/LoginTypeSelector.tsx
+
 'use client';
 
 import Link from 'next/link';
@@ -20,7 +21,7 @@ export default function LoginTypeSelector({ currentType, theme }: LoginTypeSelec
   ];
 
   return (
-    <div className="mb-6 flex justify-center gap-2">
+    <div className="mb-6 flex justify-center gap-2" data-test="selector-tipo-usuario">
       {types.map((type) => (
         <Link
           key={type.value}
@@ -35,6 +36,8 @@ export default function LoginTypeSelector({ currentType, theme }: LoginTypeSelec
               ? { backgroundColor: theme.primary }
               : undefined
           }
+          data-test={`link-tipo-${type.value}`}
+          aria-current={currentType === type.value ? 'page' : undefined}
         >
           {type.label}
         </Link>
