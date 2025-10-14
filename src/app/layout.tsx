@@ -1,5 +1,9 @@
+// src/app/layout.tsx
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { QueryProvider } from "@/providers/queryProvider";
+import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -28,7 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-                  {children}
+        <NuqsAdapter>
+          <QueryProvider>
+            {children}
+          </QueryProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
