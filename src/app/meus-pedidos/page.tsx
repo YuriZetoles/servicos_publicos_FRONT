@@ -66,6 +66,7 @@ export default function MeusPedidosPage() {
 
   const handleFiltroChange = (value: string) => {
     setFiltroSelecionado(value);
+    setPaginaAtual(1); 
   };
 
   const handlePaginaAnterior = () => {
@@ -75,6 +76,13 @@ export default function MeusPedidosPage() {
   const handleProximaPagina = () => {
     setPaginaAtual(paginaAtual + 1);
   };
+
+  const pedidosFiltrados = pedidos.filter(pedido => {
+    if (filtroSelecionado === "todos") {
+      return true;
+    }
+    return pedido.status === filtroSelecionado;
+  });
 
   return (
     <div className="min-h-screen bg-[var(--global-bg)]">
@@ -104,14 +112,29 @@ export default function MeusPedidosPage() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 mb-8">
-            {pedidos.map((pedido) => (
-              <CardPedido
-                key={pedido.id}
-                pedido={pedido}
-              />
-            ))}
-        </div>
+        {pedidosFiltrados.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 mb-8">
+              {pedidosFiltrados.map((pedido) => (
+                <CardPedido
+                  key={pedido.id}
+                  pedido={pedido}
+                />
+              ))}
+          </div>
+        ) : (
+          <div className="flex flex-col items-center justify-center mt-16 mb-8 py-12">
+            <ClipboardList className="h-16 w-16 text-gray-400 mb-4" />
+            <h3 className="text-lg font-medium text-[var(--global-text-primary)] mb-2">
+              Nenhum pedido encontrado
+            </h3>
+            <p className="text-sm text-gray-500 text-center">
+              {filtroSelecionado === "todos" 
+                ? "Você ainda não possui pedidos registrados."
+                : `Não há pedidos com status "${filtroSelecionado}".`
+              }
+            </p>
+          </div>
+        )}
 
         <div className="flex items-center justify-center gap-4">
             <button
