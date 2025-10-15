@@ -5,6 +5,22 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { QueryProvider } from "@/providers/queryProvider";
 import { NuqsAdapter } from 'nuqs/adapters/next/app';
 import "./globals.css";
+import ConditionalLayout from "@/components/layoutCondicionalLogin";
+
+const dadosFooter = {
+  endereco: {
+      nome: "Centro Administrativo Senador Doutor Teotônio Vilela",
+      rua: "Av. Senador Teotônio Vilela, 4177 - Jardim América",
+      cidade: "Vilhena - RO",
+      cep: "78995-000",
+  },
+  contato: {
+      email: "mailto:gabinete@vilhena.ro.gov.br",
+      telefone: "tel:+5693919-7080",
+      facebook: "https://www.facebook.com/municipiodevilhena/?locale=pt_BR",
+      instagram: "https://www.instagram.com/municipiodevilhena/",
+  }
+}
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +50,9 @@ export default function RootLayout({
       >
         <NuqsAdapter>
           <QueryProvider>
-            {children}
+            <ConditionalLayout dadosFooter={dadosFooter}>
+              {children}
+            </ConditionalLayout>
           </QueryProvider>
         </NuqsAdapter>
       </body>

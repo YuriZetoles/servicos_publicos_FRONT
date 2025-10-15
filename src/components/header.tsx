@@ -17,7 +17,7 @@ interface HeaderLink {
 
 export default function Header({ theme, inverted }: { theme?: 'default' | 'green' | 'purple'; inverted?: boolean }) {
   const [open, setOpen] = React.useState(false);
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
   
   const links: HeaderLink[] = [
     { href: "/", label: "Home" },
@@ -54,7 +54,7 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
           </div>
 
           <div className="hidden md:block" data-test="header-nav-desktop">
-            <nav>
+            <nav className="flex items-center gap-4">
               <Navigation>
                 {visibleLinks.map((link) => (
                   <NavLink 
@@ -66,6 +66,15 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
                   </NavLink>
                 ))}
               </Navigation>
+              {isAuthenticated && (
+                <button
+                  onClick={logout}
+                  className="ml-2 px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors"
+                  data-test="header-logout-button"
+                >
+                  Sair
+                </button>
+              )}
             </nav>
           </div>
 
@@ -113,6 +122,15 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
                 </NavLink>
               ))}
             </Navigation>
+            {isAuthenticated && (
+              <button
+                onClick={logout}
+                className="mt-3 w-full px-4 py-2 bg-red-600 text-white text-sm font-medium rounded-lg hover:bg-red-700 transition-colors"
+                data-test="header-mobile-logout-button"
+              >
+                Sair
+              </button>
+            )}
           </div>
         </div>
       </div>
