@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Banner from "@/components/banner";
-import { ChevronDown, ChevronLeft, ChevronRight, ClipboardList, Filter } from "lucide-react";
+import { ChevronLeft, ChevronRight, ClipboardList, Filter } from "lucide-react";
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "@/components/ui/select";
 import CardPedido, { Pedido } from "@/components/cardPedido";
 
@@ -62,9 +62,18 @@ const pedidosMock: Pedido[] = [
 export default function MeusPedidosPage() {
   const [filtroSelecionado, setFiltroSelecionado] = useState("todos");
   const [pedidos, setPedidos] = useState(pedidosMock);
+  const [paginaAtual, setPaginaAtual] = useState(1);
 
   const handleFiltroChange = (value: string) => {
     setFiltroSelecionado(value);
+  };
+
+  const handlePaginaAnterior = () => {
+    setPaginaAtual(paginaAtual - 1);
+  };
+
+  const handleProximaPagina = () => {
+    setPaginaAtual(paginaAtual + 1);
   };
 
   return (
@@ -103,6 +112,27 @@ export default function MeusPedidosPage() {
               />
             ))}
         </div>
+
+        <div className="flex items-center justify-center gap-4">
+            <button
+              onClick={handlePaginaAnterior}
+              disabled={paginaAtual === 1}
+              className="cursor-pointer flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronLeft size={20} />
+            </button>
+            
+            <div className="flex items-center gap-2 text-sm text-[var(--global-text-primary)]">
+              <span>Página atual: {paginaAtual}</span>
+            </div>
+            
+            <button
+              onClick={handleProximaPagina}
+              className="cursor-pointer flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            >
+              <ChevronRight size={20} />
+            </button>
+          </div>
 
       </div>
     </div>
