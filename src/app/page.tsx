@@ -20,11 +20,9 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section com Wave */}
+      {/* Seção principal da onda */}
       <section className="relative w-full overflow-hidden">
-        {/* Gradiente de fundo */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#2d6c85] via-[var(--global-accent)] to-[#4a9bb8]">
-          {/* Padrão geométrico de fundo - IGUAL AO CTA */}
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -39,19 +37,15 @@ export default function Home() {
               <rect width="100%" height="100%" fill="url(#hero-grid)"/>
             </svg>
           </div>
-          
-          {/* Elementos decorativos de fundo */}
           <div className="absolute top-20 right-20 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse-slow"></div>
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
-          
-          {/* Formas geométricas decorativas */}
           <div className="absolute top-32 left-32 w-16 h-16 border-2 border-white/20 rounded-lg rotate-12"></div>
           <div className="absolute bottom-40 right-40 w-12 h-12 border-2 border-white/20 rounded-full"></div>
         </div>
 
-        {/* Conteúdo do Hero */}
-        <div className="relative z-10 px-6 sm:px-6 lg:px-40 pt-20 md:pt-32 pb-36 md:pb-48">
-          <div className="grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* Conteúdo principal da seção hero */}
+        <div className="relative z-10 pt-20 md:pt-32 pb-36 md:pb-48">
+          <div className="px-6 sm:px-6 lg:px-40 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="text-white space-y-8">
               <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
                 Vilhena<span className="text-cyan-200">+</span>
@@ -77,33 +71,27 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Imagem ou ilustração */}
-            <div className="hidden md:flex items-center justify-center">
-              <div className="relative w-full max-w-md">
-                <div className="absolute inset-0 bg-white/20 rounded-3xl blur-2xl"></div>
-                <div className="relative bg-white/10 backdrop-blur-sm border-2 border-white/30 rounded-3xl p-8 space-y-6">
-                  <div className="space-y-3">
-                    <div className="h-3 bg-white/60 rounded-full w-3/4"></div>
-                    <div className="h-3 bg-white/40 rounded-full w-full"></div>
-                    <div className="h-3 bg-white/40 rounded-full w-5/6"></div>
-                  </div>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="bg-white/20 rounded-xl p-4 h-24"></div>
-                    <div className="bg-white/20 rounded-xl p-4 h-24"></div>
-                  </div>
-                  <div className="space-y-3">
-                    <div className="h-3 bg-white/40 rounded-full w-2/3"></div>
-                    <div className="h-3 bg-white/60 rounded-full w-4/5"></div>
-                  </div>
+            <div className="hidden md:flex items-center justify-end -mt-16">
+              <div className="relative w-96 h-[400px] flex items-center justify-center">   
+                <svg className="absolute w-96 h-96 opacity-35" style={{ zIndex: -1 }}>
+                  <circle cx="192" cy="192" r="140" fill="none" stroke="white" strokeWidth="1" strokeDasharray="3 8" />
+                  <circle cx="192" cy="192" r="100" fill="none" stroke="white" strokeWidth="0.5" />
+                </svg>
+                {/* Círculo principal - ícone centralizado */}
+                <div className="absolute w-28 h-28 flex items-center justify-center">
+                  <svg className="w-28 h-28 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                  </svg>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
 
-        {/* Wave SVG Invertida + Efeitos */}
+        {/** Animação de pontos na parte inferior da onda */}
         <div className="absolute bottom-0 left-0 w-full">
-          {/* Padrão de pontos decorativos dentro da wave */}
           <div className="absolute bottom-8 left-0 right-0 opacity-20">
             <div className="flex justify-around px-20">
               {[...Array(12)].map((_, i) => (
@@ -115,27 +103,20 @@ export default function Home() {
               ))}
             </div>
           </div>
-          
-          {/* Linhas decorativas */}
           <div className="absolute bottom-16 left-10 right-10 opacity-10">
             <svg className="w-full h-8" viewBox="0 0 1000 30">
               <path d="M0 15 Q 250 5, 500 15 T 1000 15" stroke="white" strokeWidth="2" fill="none"/>
               <path d="M0 20 Q 250 10, 500 20 T 1000 20" stroke="white" strokeWidth="1.5" fill="none"/>
             </svg>
           </div>
-
-          {/* Wave invertida */}
           <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-auto relative z-10">
             <path d="M0 80L60 73.3C120 67 240 53 360 46.7C480 40 600 40 720 43.3C840 47 960 53 1080 46.7C1200 40 1320 20 1380 10L1440 0V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0V80Z" fill="white"/>
           </svg>
         </div>
       </section>
 
-      {/* Nossos Serviços */}
-      <section id="servicos" className="py-20 px-6 sm:px-6 lg:px-40 bg-white relative">
-        {/* Elemento decorativo superior */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--global-accent)]/30 to-transparent"></div>
-        
+      {/* Seção com os 6 serviços do sistema */}
+      <section id="servicos" className="pt-8 pb-16 px-6 sm:px-6 lg:px-40 bg-white relative">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--global-text-secondary)] mb-6">
             Nossos Serviços
@@ -188,9 +169,9 @@ export default function Home() {
             <Link
               key={service.label}
               href={service.href}
-              className="group relative bg-gradient-to-br from-blue-50/50 to-white rounded-2xl p-6 border border-blue-100 hover:border-[var(--global-accent)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              className="group relative bg-gradient-to-br from-blue-50/50 to-white rounded-2xl p-8 md:p-10 border border-blue-100 hover:border-[var(--global-accent)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
             >
-              <div className="flex flex-col items-center text-center space-y-4">
+              <div className="flex flex-col items-center text-center space-y-5 md:space-y-6">
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[var(--global-accent)] to-[#4a9bb8] rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
                   <Image
                     src={service.icon}
@@ -201,10 +182,10 @@ export default function Home() {
                   />
                 </div>
                 <div>
-                  <h3 className="text-[var(--global-text-secondary)] text-base md:text-lg font-bold mb-1 group-hover:text-[var(--global-accent)] transition-colors">
+                  <h3 className="text-[var(--global-text-secondary)] text-lg md:text-xl font-bold mb-2 group-hover:text-[var(--global-accent)] transition-colors">
                     {service.label}
                   </h3>
-                  <p className="text-xs text-[var(--global-text-primary)]/60 hidden md:block">
+                  <p className="text-sm md:text-base text-[var(--global-text-primary)]/60 hidden md:block leading-relaxed">
                     {service.description}
                   </p>
                 </div>
@@ -220,16 +201,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Como Funciona */}
-      <section className="py-20 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white to-blue-50/30 relative">
-        {/* Separador decorativo superior */}
-        <div className="absolute top-0 left-0 right-0 overflow-hidden" style={{ height: '80px' }}>
-          <svg viewBox="0 0 1440 80" fill="none" className="w-full h-full">
-            <path d="M0 0L48 8C96 16 192 32 288 37.3C384 43 480 37 576 32C672 27 768 21 864 21.3C960 21 1056 27 1152 32C1248 37 1344 43 1392 45.3L1440 48V0H1392C1344 0 1248 0 1152 0C1056 0 960 0 864 0C768 0 672 0 576 0C480 0 384 0 288 0C192 0 96 0 48 0H0Z" fill="white"/>
-          </svg>
+      {/* Separador visual entre as seções de Serviços e Como Funciona */}
+      <div className="relative py-6 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white to-blue-50/20">
+        <div className="flex items-center justify-center">
+          <div className="relative flex items-center gap-8 max-w-3xl w-full">
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--global-accent)]/40 to-[var(--global-accent)]/60"></div>
+            <div className="relative flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-br from-[var(--global-accent)] to-[#4a9bb8] shadow-lg"></div>
+              <div className="w-2 h-2 rounded-full bg-[var(--global-accent)]/60"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-[var(--global-accent)]/40"></div>
+            </div>
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--global-accent)]/40 to-[var(--global-accent)]/60"></div>
+          </div>
         </div>
+      </div>
 
-        <div className="text-center mb-16 pt-12">
+      {/* Seção explicando o processo em 3 passos simples */}
+      <section className="pt-12 pb-20 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-blue-50/20 to-white relative">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-[var(--global-text-secondary)] mb-6">
             Como Funciona
           </h2>
@@ -277,22 +266,22 @@ export default function Home() {
             },
           ].map((step, index) => (
             <div key={step.number} className="relative">
-              <div className="bg-white rounded-3xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100 h-full">
-                {/* Ícone do passo */}
-                <div className={`w-20 h-20 bg-gradient-to-br ${step.bgColor} rounded-2xl flex items-center justify-center shadow-md mb-6 mx-auto`}>
+              <div className="bg-white rounded-3xl p-10 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100 h-full">
+                {/* Ícone representativo do passo */}
+                <div className={`w-24 h-24 bg-gradient-to-br ${step.bgColor} rounded-2xl flex items-center justify-center shadow-md mb-8 mx-auto`}>
                   <div className="text-white">
                     {step.icon}
                   </div>
                 </div>
 
-                <div className="text-center space-y-3">
-                  <div className="text-5xl font-bold text-[var(--global-accent)] mb-2">
+                <div className="text-center space-y-4">
+                  <div className="text-5xl font-bold text-[var(--global-accent)] mb-3">
                     {step.number}°
                   </div>
-                  <h3 className="text-2xl font-bold text-[var(--global-text-secondary)]">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--global-text-secondary)]">
                     {step.title}
                   </h3>
-                  <p className="text-[var(--global-text-primary)] leading-relaxed">
+                  <p className="text-base md:text-lg text-[var(--global-text-primary)] leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -311,44 +300,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Por que utilizar - REDESIGN MODERNO */}
+      {/* Separador entre Como Funciona e Por que utilizar */}
+      <div className="relative py-6 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white to-blue-50/20">
+        <div className="flex items-center justify-center">
+          <div className="relative flex items-center gap-8 max-w-3xl w-full">
+            {/* Linha esquerda */}
+            <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--global-accent)]/40 to-[var(--global-accent)]/60"></div>
+            
+            {/* Centro decorativo */}
+            <div className="relative flex items-center gap-3">
+              <div className="w-3 h-3 rounded-full bg-gradient-to-br from-[var(--global-accent)] to-[#4a9bb8] shadow-lg"></div>
+              <div className="w-2 h-2 rounded-full bg-[var(--global-accent)]/60"></div>
+              <div className="w-1.5 h-1.5 rounded-full bg-[var(--global-accent)]/40"></div>
+            </div>
+            
+            {/* Linha direita */}
+            <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--global-accent)]/40 to-[var(--global-accent)]/60"></div>
+          </div>
+        </div>
+      </div>
+
+      {/* Seção do Porque utilizar o Vilhena+Pública */}
       <section className="py-24 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white via-blue-50/20 to-white relative overflow-hidden">
-        {/* Elementos decorativos de fundo - Mais sutis */}
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute top-20 right-20 w-64 h-64 bg-[var(--global-accent)] rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-cyan-400 rounded-full blur-3xl"></div>
         </div>
-
-        {/* Padrão de linhas diagonais */}
         <div className="absolute inset-0 opacity-[0.02]">
-          <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="diagonal-lines" width="40" height="40" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
-                <line x1="0" y1="0" x2="0" y2="40" stroke="currentColor" strokeWidth="1" className="text-[var(--global-accent)]"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#diagonal-lines)"/>
+          <svg width="100%" height="100%">
+            <pattern id="diagonals" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M0 40L40 0" stroke="currentColor" strokeWidth="1" className="text-[var(--global-accent)]"/>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#diagonals)" />
           </svg>
         </div>
 
-        {/* Separador superior ondulado */}
-        <div className="absolute top-0 left-0 right-0 overflow-hidden" style={{ height: '60px' }}>
-          <svg viewBox="0 0 1440 60" fill="none" className="w-full h-full">
-            <path d="M0 30C240 10, 480 50, 720 30C960 10, 1200 50, 1440 30V0H0V30Z" fill="url(#gradient-wave)"/>
-            <defs>
-              <linearGradient id="gradient-wave" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#EFF6FF" />
-                <stop offset="50%" stopColor="#DBEAFE" />
-                <stop offset="100%" stopColor="#EFF6FF" />
-              </linearGradient>
-            </defs>
-          </svg>
-        </div>
-
-        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center pt-12 relative z-10">
-          {/* Lado esquerdo - Conteúdo (3 colunas) */}
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center relative z-10">
           <div className="lg:col-span-3 space-y-10 order-2 lg:order-1">
-            {/* Cabeçalho da seção */}
             <div className="space-y-6">
               <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[var(--global-accent)]/10 to-transparent px-6 py-3 rounded-full border border-[var(--global-accent)]/20">
                 <div className="w-2 h-2 bg-[var(--global-accent)] rounded-full animate-pulse"></div>
@@ -373,8 +361,9 @@ export default function Home() {
                 suas necessidades e ajudar a melhorar a qualidade de vida em Vilhena.
               </p>
             </div>
+          
 
-            {/* Grid de benefícios - Redesenhado */}
+            {/* Lista com 4 vantagens de utilizar o Vilhena+Pública */}
             <div className="space-y-5">
               {[
                 {
@@ -419,7 +408,6 @@ export default function Home() {
                   key={index} 
                   className="group relative bg-white rounded-2xl p-6 border border-blue-100 hover:border-[var(--global-accent)]/40 hover:shadow-lg transition-all duration-300"
                 >
-                  {/* Linha decorativa lateral */}
                   <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-[var(--global-accent)] to-[#4a9bb8] rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
                   <div className="flex gap-5 items-start pl-2">
@@ -440,19 +428,17 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Lado direito - Imagem (2 colunas) */}
           <div className="lg:col-span-2 order-1 lg:order-2">
             <div className="relative">
-              {/* Container da imagem com proporções melhoradas */}
-              <div className="relative aspect-[4/5] max-w-md mx-auto lg:max-w-none">
-                {/* Decoração de fundo - Camadas gradientes */}
+              {/* Container da imagem com proporção quadrada */}
+              <div className="relative aspect-[4/4] max-w-sm mx-auto lg:max-w-none">
                 <div className="absolute -inset-6 bg-gradient-to-br from-[var(--global-accent)]/20 via-cyan-400/10 to-transparent rounded-3xl blur-2xl"></div>
                 <div className="absolute -inset-3 bg-gradient-to-tr from-blue-400/10 via-transparent to-[#4a9bb8]/10 rounded-3xl"></div>
                 
-                {/* Borda decorativa externa */}
+                {/* Borda gradiente ao redor da imagem */}
                 <div className="absolute -inset-2 bg-gradient-to-br from-[var(--global-accent)] to-[#4a9bb8] rounded-3xl opacity-20"></div>
                 
-                {/* Container da imagem */}
+                {/* Moldura branca com a imagem dentro */}
                 <div className="relative h-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
                   <div className="absolute inset-0 bg-gradient-to-br from-[var(--global-accent)]/5 via-transparent to-cyan-400/5 z-10"></div>
                   <Image
@@ -463,16 +449,11 @@ export default function Home() {
                   />
                 </div>
 
-                {/* Elementos decorativos flutuantes */}
+                {/* Badge com ícone de estrela */}
                 <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-[var(--global-accent)] to-[#4a9bb8] rounded-2xl shadow-xl flex items-center justify-center text-white font-bold text-2xl rotate-12 hover:rotate-0 transition-transform duration-300">
                   <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
-                </div>
-                
-                <div className="absolute -bottom-4 -left-4 w-20 h-20 bg-white rounded-2xl shadow-xl flex flex-col items-center justify-center border-2 border-[var(--global-accent)]/20 hover:scale-105 transition-transform duration-300">
-                  <div className="text-2xl font-bold text-[var(--global-accent)]">+1k</div>
-                  <div className="text-xs text-[var(--global-text-primary)]">Usuários</div>
                 </div>
               </div>
             </div>
@@ -480,14 +461,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Final */}
-      <section className="relative py-24 px-6 sm:px-6 lg:px-40 overflow-hidden">
-        {/* Separador decorativo superior */}
+      <section className="relative py-10 px-6 sm:px-6 lg:px-40 overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--global-accent)]/40 to-transparent"></div>
-        
-        {/* Background com gradiente */}
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--global-accent)] via-[#3d8aa8] to-[#4a9bb8]">
-          {/* Padrão geométrico de fundo */}
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
               <defs>
@@ -503,11 +479,8 @@ export default function Home() {
             </svg>
           </div>
           
-          {/* Elementos blur decorativos */}
           <div className="absolute top-10 right-10 w-72 h-72 bg-white/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-10 left-10 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl"></div>
-          
-          {/* Formas geométricas */}
           <div className="absolute top-20 left-20 w-20 h-20 border-2 border-white/20 rounded-lg rotate-12"></div>
           <div className="absolute bottom-32 right-32 w-16 h-16 border-2 border-white/20 rounded-full"></div>
         </div>
@@ -542,7 +515,6 @@ export default function Home() {
             </Link>
           </div>
 
-          {/* Indicadores decorativos */}
           <div className="flex justify-center gap-8 pt-12 text-white/80 text-sm">
             <div className="flex items-center gap-2">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
