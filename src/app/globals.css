@@ -179,27 +179,7 @@
   }
 }
 
-/* Animações suaves personalizadas */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
-
+/* Animação pulse-slow usada na página inicial */
 @keyframes pulse-slow {
   0%, 100% {
     opacity: 1;
@@ -207,10 +187,6 @@
   50% {
     opacity: 0.5;
   }
-}
-
-.animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out;
 }
 
 .animate-pulse-slow {
@@ -222,59 +198,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Transições globais suaves */
-* {
-  transition-property: color, background-color, border-color, transform, box-shadow;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 200ms;
-}
-
-/* Efeito de glassmorphism */
-.glass-effect {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Gradiente de texto animado */
-.gradient-text {
-  background: linear-gradient(90deg, var(--global-accent), #4a9bb8);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: gradient-shift 3s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-}
-
-/* Shadow personalizadas */
-.shadow-elegant {
-  box-shadow: 0 10px 40px rgba(51, 118, 149, 0.1);
-}
-
-.shadow-elegant-lg {
-  box-shadow: 0 20px 60px rgba(51, 118, 149, 0.15);
-}
-
-/* Hover effect para cards */
-.card-hover {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.card-hover:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(51, 118, 149, 0.2);
-}
-
+/* Header styles */
 .site-header {
   background: var(--global-bg);
 }

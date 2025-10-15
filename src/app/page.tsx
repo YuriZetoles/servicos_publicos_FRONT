@@ -19,9 +19,9 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white" data-test="pagina-inicial">
       {/* Seção principal da onda */}
-      <section className="relative w-full overflow-hidden">
+      <section className="relative w-full overflow-hidden" data-test="secao-hero">
         <div className="absolute inset-0 bg-gradient-to-br from-[#2d6c85] via-[var(--global-accent)] to-[#4a9bb8]">
           <div className="absolute inset-0 opacity-10">
             <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
@@ -47,31 +47,33 @@ export default function Home() {
         <div className="relative z-10 pt-20 md:pt-32 pb-36 md:pb-48">
           <div className="px-6 sm:px-6 lg:px-40 grid md:grid-cols-2 gap-12 lg:gap-16 items-center">
             <div className="text-white space-y-8">
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-tight" data-test="titulo-principal">
                 Vilhena<span className="text-cyan-200">+</span>
                 <br />
                 Pública
               </h1>
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed">
+              <p className="text-xl md:text-2xl text-white/90 leading-relaxed" data-test="descricao-principal">
                 O Vilhena+Pública foi desenvolvido para manter você conectado com a cidade de Vilhena - RO. Os moradores podem solicitar atendimentos de forma rápida e segura.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex flex-col sm:flex-row gap-4 pt-4" data-test="botoes-hero">
                 <Link 
                   href="/demanda"
                   className="text-center px-10 py-4 bg-white text-[var(--global-accent)] font-bold rounded-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
+                  data-test="botao-comece-agora"
                 >
                   Comece Agora
                 </Link>
                 <a 
                   href="#servicos"
                   className="text-center px-10 py-4 bg-transparent text-white font-bold rounded-lg border-2 border-white hover:bg-white hover:text-[var(--global-accent)] transition-all duration-300"
+                  data-test="botao-saiba-mais"
                 >
                   Saiba Mais
                 </a>
               </div>
             </div>
 
-            <div className="hidden md:flex items-center justify-end -mt-16">
+            <div className="hidden md:flex items-center justify-end -mt-16" data-test="composicao-visual-hero">
               <div className="relative w-96 h-[400px] flex items-center justify-center">   
                 <svg className="absolute w-96 h-96 opacity-35" style={{ zIndex: -1 }}>
                   <circle cx="192" cy="192" r="140" fill="none" stroke="white" strokeWidth="1" strokeDasharray="3 8" />
@@ -116,18 +118,18 @@ export default function Home() {
       </section>
 
       {/* Seção com os 6 serviços do sistema */}
-      <section id="servicos" className="pt-8 pb-16 px-6 sm:px-6 lg:px-40 bg-white relative">
+      <section id="servicos" className="pt-8 pb-16 px-6 sm:px-6 lg:px-40 bg-white relative" data-test="secao-servicos">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--global-text-secondary)] mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[var(--global-text-secondary)] mb-6" data-test="titulo-servicos">
             Nossos Serviços
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[var(--global-accent)] to-[#4a9bb8] mx-auto mb-6 rounded-full"></div>
-          <p className="text-lg md:text-xl text-[var(--global-text-primary)] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-[var(--global-text-primary)] max-w-3xl mx-auto leading-relaxed" data-test="descricao-servicos">
             Escolha uma das categorias abaixo para reportar problemas e solicitar atendimentos na cidade de Vilhena
           </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6" data-test="grid-servicos">
           {[
             {
               icon: "/homeIconeColeta.svg",
@@ -170,6 +172,7 @@ export default function Home() {
               key={service.label}
               href={service.href}
               className="group relative bg-gradient-to-br from-blue-50/50 to-white rounded-2xl p-8 md:p-10 border border-blue-100 hover:border-[var(--global-accent)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+              data-test={`card-servico-${service.label.toLowerCase()}`}
             >
               <div className="flex flex-col items-center text-center space-y-5 md:space-y-6">
                 <div className="w-16 h-16 md:w-20 md:h-20 bg-gradient-to-br from-[var(--global-accent)] to-[#4a9bb8] rounded-2xl flex items-center justify-center shadow-md group-hover:shadow-xl group-hover:scale-110 transition-all duration-300">
@@ -178,14 +181,15 @@ export default function Home() {
                     alt={service.label}
                     width={36}
                     height={36}
+                    style={{ width: '36px', height: '36px' }}
                     className="filter brightness-0 invert"
                   />
                 </div>
                 <div>
-                  <h3 className="text-[var(--global-text-secondary)] text-lg md:text-xl font-bold mb-2 group-hover:text-[var(--global-accent)] transition-colors">
+                  <h3 className="text-[var(--global-text-secondary)] text-lg md:text-xl font-bold mb-2 group-hover:text-[var(--global-accent)] transition-colors" data-test={`titulo-servico-${service.label.toLowerCase()}`}>
                     {service.label}
                   </h3>
-                  <p className="text-sm md:text-base text-[var(--global-text-primary)]/60 hidden md:block leading-relaxed">
+                  <p className="text-sm md:text-base text-[var(--global-text-primary)]/60 hidden md:block leading-relaxed" data-test={`descricao-servico-${service.label.toLowerCase()}`}>
                     {service.description}
                   </p>
                 </div>
@@ -217,18 +221,18 @@ export default function Home() {
       </div>
 
       {/* Seção explicando o processo em 3 passos simples */}
-      <section className="pt-12 pb-20 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-blue-50/20 to-white relative">
+      <section className="pt-8 pb-20 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-blue-50/20 to-white relative" data-test="secao-como-funciona">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-[var(--global-text-secondary)] mb-6">
+          <h2 className="text-4xl md:text-5xl font-bold text-[var(--global-text-secondary)] mb-6" data-test="titulo-como-funciona">
             Como Funciona
           </h2>
           <div className="w-24 h-1 bg-gradient-to-r from-[var(--global-accent)] to-[#4a9bb8] mx-auto mb-6 rounded-full"></div>
-          <p className="text-lg md:text-xl text-[var(--global-text-primary)] max-w-3xl mx-auto leading-relaxed">
+          <p className="text-lg md:text-xl text-[var(--global-text-primary)] max-w-3xl mx-auto leading-relaxed" data-test="descricao-como-funciona">
             Siga estes três passos simples para reportar problemas e ajudar a melhorar nossa cidade
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12" data-test="grid-passos">
           {[
             {
               number: "1",
@@ -265,7 +269,7 @@ export default function Home() {
               bgColor: "from-[#4a9bb8] to-[#5bb0c8]"
             },
           ].map((step, index) => (
-            <div key={step.number} className="relative">
+            <div key={step.number} className="relative" data-test={`card-passo-${step.number}`}>
               <div className="bg-white rounded-3xl p-10 md:p-12 shadow-lg hover:shadow-xl transition-all duration-300 border border-blue-100 h-full">
                 {/* Ícone representativo do passo */}
                 <div className={`w-24 h-24 bg-gradient-to-br ${step.bgColor} rounded-2xl flex items-center justify-center shadow-md mb-8 mx-auto`}>
@@ -275,13 +279,13 @@ export default function Home() {
                 </div>
 
                 <div className="text-center space-y-4">
-                  <div className="text-5xl font-bold text-[var(--global-accent)] mb-3">
+                  <div className="text-5xl font-bold text-[var(--global-accent)] mb-3" data-test={`numero-passo-${step.number}`}>
                     {step.number}°
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--global-text-secondary)]">
+                  <h3 className="text-2xl md:text-3xl font-bold text-[var(--global-text-secondary)]" data-test={`titulo-passo-${step.number}`}>
                     {step.title}
                   </h3>
-                  <p className="text-base md:text-lg text-[var(--global-text-primary)] leading-relaxed">
+                  <p className="text-base md:text-lg text-[var(--global-text-primary)] leading-relaxed" data-test={`descricao-passo-${step.number}`}>
                     {step.description}
                   </p>
                 </div>
@@ -290,7 +294,7 @@ export default function Home() {
           ))}
         </div>
 
-        <div className="bg-white rounded-2xl p-8 shadow-md border border-blue-100">
+        <div className="bg-white rounded-2xl p-8 shadow-md border border-blue-100" data-test="info-processo">
           <p className="text-center text-[var(--global-text-primary)] text-base md:text-lg leading-relaxed">
             Sua solicitação será analisada por nossa equipe e, caso aprovada, 
             encaminhada ao setor responsável da prefeitura. Esse setor definirá 
@@ -301,31 +305,31 @@ export default function Home() {
       </section>
 
       {/* Separador entre Como Funciona e Por que utilizar */}
-      <div className="relative py-6 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white to-blue-50/20">
+      <div className="relative py-3 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white to-blue-50/20">
         <div className="flex items-center justify-center">
           <div className="relative flex items-center gap-8 max-w-3xl w-full">
-            {/* Linha esquerda */}
+
             <div className="flex-1 h-px bg-gradient-to-r from-transparent via-[var(--global-accent)]/40 to-[var(--global-accent)]/60"></div>
             
-            {/* Centro decorativo */}
             <div className="relative flex items-center gap-3">
               <div className="w-3 h-3 rounded-full bg-gradient-to-br from-[var(--global-accent)] to-[#4a9bb8] shadow-lg"></div>
               <div className="w-2 h-2 rounded-full bg-[var(--global-accent)]/60"></div>
               <div className="w-1.5 h-1.5 rounded-full bg-[var(--global-accent)]/40"></div>
             </div>
             
-            {/* Linha direita */}
             <div className="flex-1 h-px bg-gradient-to-l from-transparent via-[var(--global-accent)]/40 to-[var(--global-accent)]/60"></div>
           </div>
         </div>
       </div>
 
       {/* Seção do Porque utilizar o Vilhena+Pública */}
-      <section className="py-24 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white via-blue-50/20 to-white relative overflow-hidden">
+      <section className="pt-12 pb-24 px-6 sm:px-6 lg:px-40 bg-gradient-to-b from-white via-blue-50/20 to-white relative overflow-hidden" data-test="secao-porque-utilizar">
+        
         <div className="absolute inset-0 opacity-[0.03]">
           <div className="absolute top-20 right-20 w-64 h-64 bg-[var(--global-accent)] rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 left-20 w-80 h-80 bg-cyan-400 rounded-full blur-3xl"></div>
         </div>
+
         <div className="absolute inset-0 opacity-[0.02]">
           <svg width="100%" height="100%">
             <pattern id="diagonals" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -338,24 +342,23 @@ export default function Home() {
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-center relative z-10">
           <div className="lg:col-span-3 space-y-10 order-2 lg:order-1">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[var(--global-accent)]/10 to-transparent px-6 py-3 rounded-full border border-[var(--global-accent)]/20">
-                <div className="w-2 h-2 bg-[var(--global-accent)] rounded-full animate-pulse"></div>
-                <span className="text-sm font-bold text-[var(--global-accent)] uppercase tracking-wider">Vantagens</span>
+              <div className="inline-flex items-center gap-3 bg-gradient-to-r from-[var(--global-accent)]/10 via-[var(--global-accent)]/5 to-transparent px-8 py-3.5 rounded-full border-l-4 border-[var(--global-accent)] shadow-sm" data-test="badge-vantagens">
+                <span className="text-sm font-extrabold text-[var(--global-accent)] uppercase tracking-widest">Vantagens</span>
               </div>
               
               <div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--global-text-secondary)] leading-tight mb-3">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--global-text-secondary)] leading-tight mb-3" data-test="titulo-porque-utilizar">
                   Por que utilizar o
                 </h2>
-                <div className="flex items-center gap-4 mb-6">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[var(--global-accent)] via-[#3d8aa8] to-[#4a9bb8] bg-clip-text text-transparent">
+                <div className="flex items-center gap-1 mb-6">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[var(--global-accent)] via-[#3d8aa8] to-[#4a9bb8] bg-clip-text text-transparent leading-tight" data-test="subtitulo-vilhena-publica">
                     Vilhena+Pública
                   </h2>
-                  <div className="flex-1 h-1 bg-gradient-to-r from-[var(--global-accent)] to-transparent rounded-full max-w-[100px]"></div>
+                  <span className="text-3xl md:text-4xl lg:text-5xl font-bold text-[var(--global-accent)]">?</span>
                 </div>
               </div>
 
-              <p className="text-base md:text-lg text-[var(--global-text-primary)] leading-relaxed max-w-2xl">
+              <p className="text-base md:text-lg text-[var(--global-text-primary)] leading-relaxed max-w-2xl" data-test="descricao-porque-utilizar">
                 Nós acreditamos que um cidadão ativo é essencial para uma cidade melhor. 
                 Com o Vilhena+Pública, você tem uma maneira fácil e direta de comunicar 
                 suas necessidades e ajudar a melhorar a qualidade de vida em Vilhena.
@@ -364,7 +367,7 @@ export default function Home() {
           
 
             {/* Lista com 4 vantagens de utilizar o Vilhena+Pública */}
-            <div className="space-y-5">
+            <div className="space-y-5" data-test="lista-vantagens">
               {[
                 {
                   icon: (
@@ -407,6 +410,7 @@ export default function Home() {
                 <div 
                   key={index} 
                   className="group relative bg-white rounded-2xl p-6 border border-blue-100 hover:border-[var(--global-accent)]/40 hover:shadow-lg transition-all duration-300"
+                  data-test={`card-vantagem-${index + 1}`}
                 >
                   <div className="absolute left-0 top-6 bottom-6 w-1 bg-gradient-to-b from-[var(--global-accent)] to-[#4a9bb8] rounded-r-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   
@@ -415,10 +419,10 @@ export default function Home() {
                       {benefit.icon}
                     </div>
                     <div className="flex-1 pt-1">
-                      <h3 className="text-lg font-bold text-[var(--global-text-secondary)] mb-2 group-hover:text-[var(--global-accent)] transition-colors">
+                      <h3 className="text-lg font-bold text-[var(--global-text-secondary)] mb-2 group-hover:text-[var(--global-accent)] transition-colors" data-test={`titulo-vantagem-${index + 1}`}>
                         {benefit.title}
                       </h3>
-                      <p className="text-sm text-[var(--global-text-primary)]/70 leading-relaxed">
+                      <p className="text-sm text-[var(--global-text-primary)]/70 leading-relaxed" data-test={`descricao-vantagem-${index + 1}`}>
                         {benefit.description}
                       </p>
                     </div>
@@ -445,6 +449,7 @@ export default function Home() {
                     src="/homeCardPorqueUsar.png"
                     alt="Pessoa usando tablet"
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 40vw"
                     className="object-cover relative z-0"
                   />
                 </div>
@@ -461,7 +466,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="relative py-10 px-6 sm:px-6 lg:px-40 overflow-hidden">
+      <section className="relative py-10 px-6 sm:px-6 lg:px-40 overflow-hidden" data-test="secao-cta">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[var(--global-accent)]/40 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-br from-[var(--global-accent)] via-[#3d8aa8] to-[#4a9bb8]">
           <div className="absolute inset-0 opacity-10">
@@ -486,23 +491,24 @@ export default function Home() {
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto text-center text-white space-y-8">
-          <div className="inline-block px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold mb-4">
+          <div className="inline-block px-6 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold mb-4" data-test="badge-cta">
             Junte-se a nós
           </div>
           
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight" data-test="titulo-cta">
             Pronto para começar?
           </h2>
           
-          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed" data-test="descricao-cta">
             Faça parte da transformação de Vilhena. Sua participação é fundamental 
             para construirmos juntos uma cidade melhor para todos.
           </p>
           
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6" data-test="botoes-cta">
             <Link 
-              href="/cadastro"
+              href="/login"
               className="group relative px-10 py-5 bg-white text-[var(--global-accent)] font-bold text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden"
+              data-test="botao-criar-conta"
             >
               <span className="relative z-10">Criar Conta Agora</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white to-blue-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -510,6 +516,7 @@ export default function Home() {
             <Link 
               href="/login"
               className="px-10 py-5 bg-transparent text-white font-bold text-lg rounded-lg border-2 border-white hover:bg-white hover:text-[var(--global-accent)] transition-all duration-300"
+              data-test="botao-ja-tenho-conta"
             >
               Já tenho conta
             </Link>
