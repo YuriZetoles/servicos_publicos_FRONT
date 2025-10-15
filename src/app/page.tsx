@@ -21,13 +21,6 @@ export default function Home() {
     <div className="min-h-screen bg-white font-sans">
       <section className="relative w-full h-[240px] md:h-[350px] bg-gradient-to-r from-cyan-200 via-blue-300 to-blue-400 overflow-hidden flex items-center">
         <div className="absolute inset-0">
-          <Image
-            src="/homeBanner.png"
-            alt="Imagem de fundo"
-            fill
-            className="object-cover opacity-50"
-            priority
-          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-cyan-400/40 to-blue-500/50"></div>
         <div className="relative z-10 flex flex-col md:flex-row items-center justify-between w-full h-full px-6 sm:px-6 lg:px-40">
@@ -202,7 +195,7 @@ export default function Home() {
           </div>
           <div className="flex-1">
             <Image
-              src="/homePorque.png"
+              src="/homeCardPorqueUsar.png"
               alt="Pessoa usando tablet"
               width={400}
               height={400}
