@@ -5,8 +5,6 @@
 import { useAuth } from '@/hooks/useAuth';
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-import Header from '@/components/header';
-import Footer from '@/components/footer';
 
 export default function PerfilPage() {
   const { isAuthenticated, user, isLoading, logout } = useAuth();
