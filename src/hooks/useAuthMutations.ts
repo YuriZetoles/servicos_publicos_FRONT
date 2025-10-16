@@ -138,7 +138,7 @@ export function useLogout() {
     onSuccess: () => {
       clearTokens();
       queryClient.clear();
-      router.push('/login');
+      router.push('/');
     },
   });
 }

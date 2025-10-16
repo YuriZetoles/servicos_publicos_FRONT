@@ -72,7 +72,7 @@ export default function Home() {
                 ) : (
                   <>
                     <Link 
-                      href="/cadastro"
+                      href="/login"
                       className="text-center px-10 py-4 bg-white text-[var(--global-accent)] font-bold rounded-lg shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300"
                       data-test="botao-comece-agora"
                     >
@@ -539,7 +539,7 @@ export default function Home() {
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-6" data-test="botoes-cta">
                 <Link 
-                  href="/cadastro"
+                  href="/login"
                   className="group relative px-10 py-5 bg-white text-[var(--global-accent)] font-bold text-lg rounded-lg shadow-2xl hover:shadow-3xl transition-all duration-300 overflow-hidden"
                   data-test="botao-criar-conta"
                 >

@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 
 export default function PerfilPage() {
-  const { isAuthenticated, user, isLoading, logout } = useAuth();
+  const { isAuthenticated, user, isLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
