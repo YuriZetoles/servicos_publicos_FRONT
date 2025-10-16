@@ -5,6 +5,7 @@ import Banner from "@/components/banner";
 import { ChevronLeft, ChevronRight, ClipboardList, Filter } from "lucide-react";
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "@/components/ui/select";
 import CardPedido, { Pedido } from "@/components/cardPedido";
+import DetalhesDemandaModal from "@/components/detalheDemandaModal";
 
 const pedidosMock: Pedido[] = [
   {
@@ -114,6 +115,8 @@ export default function MeusPedidosPage() {
   const [filtroSelecionado, setFiltroSelecionado] = useState("todos");
   const [pedidos, setPedidos] = useState(pedidosMock);
   const [paginaAtual, setPaginaAtual] = useState(1);
+  const [pedidoSelecionado, setPedidoSelecionado] = useState<Pedido | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleFiltroChange = (value: string) => {
     setFiltroSelecionado(value);
@@ -128,6 +131,18 @@ export default function MeusPedidosPage() {
     setPaginaAtual(paginaAtual + 1);
   };
 
+  const handleVerMais = (id: string) => {
+    const pedido = pedidos.find(p => p.id === id);
+    if (pedido) {
+      setPedidoSelecionado(pedido);
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setPedidoSelecionado(null);
+  };
 
   const pedidosFiltrados = pedidos.filter(pedido => {
     if (filtroSelecionado === "todos") {
@@ -170,6 +185,7 @@ export default function MeusPedidosPage() {
                 <CardPedido
                   key={pedido.id}
                   pedido={pedido}
+                  onVerMais={handleVerMais}
                 />
               ))}
           </div>
@@ -211,6 +227,11 @@ export default function MeusPedidosPage() {
 
       </div>
 
+      <DetalhesDemandaModal
+        pedido={pedidoSelecionado}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
     </div>
   );
 }
