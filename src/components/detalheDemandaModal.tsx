@@ -2,6 +2,7 @@
 
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog";
 import { Pedido } from "./cardPedido";
+import ProgressoPedido from "./ProgressoPedido";
 
 interface DetalhesDemandaModalProps {
   pedido: Pedido | null;
@@ -28,6 +29,11 @@ export default function DetalhesDemandaModal({
           </DialogTitle>
         </DialogHeader>
 
+        <div className="space-y-6">
+          {pedido.status === "aceito" && pedido.progresso && (
+            <ProgressoPedido progresso={pedido.progresso} />
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );
