@@ -34,22 +34,13 @@ export default function PerfilPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50" data-test="page-perfil">
-      <Header />
-      
+    <div className="min-h-screen bg-gray-50" data-test="page-perfil"> 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="bg-white rounded-lg shadow-lg p-8" data-test="perfil-container">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-3xl font-bold text-gray-900" data-test="perfil-titulo">
               Meu Perfil
             </h1>
-            <button
-              onClick={logout}
-              className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-              data-test="button-logout"
-            >
-              Sair
-            </button>
           </div>
 
           <div className="border-t border-gray-200 pt-6" data-test="perfil-info">
@@ -117,21 +108,6 @@ export default function PerfilPage() {
           </div>
         </div>
       </main>
-
-      <Footer 
-        endereco={{
-          nome: "Centro Administrativo Senador Doutor Teotônio Vilela",
-          rua: "Av. Senador Teotônio Vilela, 4177 - Jardim América",
-          cidade: "Vilhena - RO",
-          cep: "78995-000",
-        }}
-        contato={{
-          email: "mailto:gabinete@vilhena.ro.gov.br",
-          telefone: "tel:+5593919-7080",
-          facebook: "https://www.facebook.com/municipiodevilhena/?locale=pt_BR",
-          instagram: "https://www.instagram.com/municipiodevilhena/",
-        }}
-      />
     </div>
   );
 }
