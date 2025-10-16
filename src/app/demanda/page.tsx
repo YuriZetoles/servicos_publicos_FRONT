@@ -5,8 +5,6 @@
 import CardDemanda from "@/components/cardDemanda";
 import Banner from "@/components/banner";
 import { useState, useEffect, useCallback } from "react";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
 import { getAccessToken } from "@/hooks/useAuthMutations";
 
 interface DemandaProps {
@@ -17,21 +15,6 @@ interface DemandaProps {
   tipo?: string,
   createdAt?: string,
   updatedAt?: string
-}
-
-const dadosFooter = {
-  endereco: {
-      nome: "Centro Administrativo Senador Doutor Teotônio Vilela",
-      rua: "Av. Senador Teotônio Vilela, 4177 - Jardim América",
-      cidade: "Vilhena - RO",
-      cep: "78995-000",
-  },
-  contato: {
-      email: "mailto:gabinete@vilhena.ro.gov.br",
-      telefone: "tel:+5693919-7080",
-      facebook: "https://www.facebook.com/municipiodevilhena/?locale=pt_BR",
-      instagram: "https://www.instagram.com/municipiodevilhena/",
-  }
 }
 
 export default function Demanda() {
@@ -110,7 +93,6 @@ export default function Demanda() {
 
   return (
     <div data-test="demanda-page">
-      <Header />
       <Banner
         titulo={bannerData?.tipo || "Coleta"}
         descricao={bannerData?.descricao || "Serviços prestados com relação a coleta de restos de construção, entulho, lixos, vegetais e coleta de animais mortos."}
@@ -130,7 +112,6 @@ export default function Demanda() {
         ))}
         </div>
       </div>
-          <Footer endereco={dadosFooter.endereco} contato={dadosFooter.contato} />
     </div>
   );
 }
