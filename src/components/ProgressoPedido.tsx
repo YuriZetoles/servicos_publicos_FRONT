@@ -46,26 +46,41 @@ export default function ProgressoPedido({ progresso, size = "md", variant = "def
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <div className={`${getCircleSize()} rounded-full flex items-center justify-center ${
+          <div className={`${getCircleSize()} rounded-full flex items-center justify-center transition-all duration-500 ease-in-out ${
             progresso.aprovado ? colors.active : colors.inactive
           }`}>
-            <Check size={getIconSize()} />
+            <Check 
+              size={getIconSize()} 
+              className={`transition-all duration-300 ease-in-out ${
+                progresso.aprovado ? 'scale-100 opacity-100' : 'scale-75 opacity-50'
+              }`}
+            />
           </div>
           <span className="text-sm text-[var(--global-text-primary)]">Aprovado</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className={`${getCircleSize()} rounded-full flex items-center justify-center ${
+          <div className={`${getCircleSize()} rounded-full flex items-center justify-center transition-all duration-500 ease-in-out ${
             progresso.emProgresso ? colors.active : colors.inactive
           }`}>
-            <Check size={getIconSize()} />
+            <Check 
+              size={getIconSize()} 
+              className={`transition-all duration-300 ease-in-out ${
+                progresso.emProgresso ? 'scale-100 opacity-100' : 'scale-75 opacity-50'
+              }`}
+            />
           </div>
           <span className="text-sm text-[var(--global-text-primary)]">Em progresso</span>
         </div>
         <div className="flex items-center gap-2">
-          <div className={`${getCircleSize()} rounded-full flex items-center justify-center ${
+          <div className={`${getCircleSize()} rounded-full flex items-center justify-center transition-all duration-500 ease-in-out ${
             progresso.concluido ? colors.active : colors.inactive
           }`}>
-            <Check size={getIconSize()} />
+            <Check 
+              size={getIconSize()} 
+              className={`transition-all duration-300 ease-in-out ${
+                progresso.concluido ? 'scale-100 opacity-100' : 'scale-75 opacity-50'
+              }`}
+            />
           </div>
           <span className="text-sm text-[var(--global-text-primary)]">Concluído</span>
         </div>
