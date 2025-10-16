@@ -9,8 +9,16 @@ import CardPedido, { Pedido } from "@/components/cardPedido";
 const pedidosMock: Pedido[] = [
   {
     id: "1",
-    titulo: "Demanda sobre Iluminação",
+    titulo: "Demanda sobre Iluminação Pública",
     status: "aceito",
+    descricao: "Tem restos de construção em frente a minha casa, preciso que coletem pois está atrapalhando a passagem.",
+    imagem: "/banner.png",
+    endereco: {
+      bairro: "Bela Vista",
+      tipoLogradouro: "Avenida",
+      logradouro: "Bela Vista",
+      numero: "9999"
+    },
     progresso: {
       aprovado: true,
       emProgresso: true,
@@ -19,8 +27,16 @@ const pedidosMock: Pedido[] = [
   },
   {
     id: "2",
-    titulo: "Demanda sobre Iluminação",
+    titulo: "Demanda sobre Coleta de Lixo",
     status: "aceito",
+    descricao: "Lixeira da rua está quebrada há uma semana, precisamos de uma nova.",
+    imagem: "/banner.png",
+    endereco: {
+      bairro: "Centro",
+      tipoLogradouro: "Rua",
+      logradouro: "São João",
+      numero: "123"
+    },
     progresso: {
       aprovado: true,
       emProgresso: true,
@@ -29,8 +45,16 @@ const pedidosMock: Pedido[] = [
   },
   {
     id: "3",
-    titulo: "Demanda sobre Iluminação",
+    titulo: "Demanda sobre Asfaltamento",
     status: "aceito",
+    descricao: "A rua está com muitas crateras, dificultando a passagem de veículos.",
+    imagem: "/banner.png",
+    endereco: {
+      bairro: "Jardim América",
+      tipoLogradouro: "Rua",
+      logradouro: "das Flores",
+      numero: "456"
+    },
     progresso: {
       aprovado: true,
       emProgresso: true,
@@ -39,23 +63,50 @@ const pedidosMock: Pedido[] = [
   },
   {
     id: "4",
-    titulo: "Demanda sobre Iluminação",
+    titulo: "Demanda sobre Iluminação Pública",
     status: "aceito",
+    descricao: "Lâmpada da rua queimou e está escuro à noite, causando insegurança.",
+    imagem: "/banner.png",
+    endereco: {
+      bairro: "Bela Vista",
+      tipoLogradouro: "Avenida",
+      logradouro: "Bela Vista",
+      numero: "9999"
+    },
     progresso: {
       aprovado: true,
       emProgresso: true,
       concluido: true,
     },
+    conclusao: {
+      descricao: "No dia 17/10/2024 a troca de lâmpada foi feita pela empresa Energisa",
+      imagem: "/banner.png",
+      dataConclusao: "17/10/2024"
+    }
   },
   {
     id: "5",
-    titulo: "Demanda sobre Iluminação",
+    titulo: "Demanda sobre Limpeza Urbana",
     status: "recusado",
+    descricao: "Solicitação de limpeza em área particular não contemplada pelo serviço público.",
+    endereco: {
+      bairro: "Vila Nova",
+      tipoLogradouro: "Rua",
+      logradouro: "Particular",
+      numero: "S/N"
+    }
   },
   {
     id: "6",
-    titulo: "Demanda sobre Iluminação",
+    titulo: "Demanda sobre Pavimentação",
     status: "recusado",
+    descricao: "Solicitação fora do cronograma de obras da prefeitura para este ano.",
+    endereco: {
+      bairro: "Zona Rural",
+      tipoLogradouro: "Estrada",
+      logradouro: "Rural",
+      numero: "KM 5"
+    }
   },
 ];
 
@@ -76,6 +127,7 @@ export default function MeusPedidosPage() {
   const handleProximaPagina = () => {
     setPaginaAtual(paginaAtual + 1);
   };
+
 
   const pedidosFiltrados = pedidos.filter(pedido => {
     if (filtroSelecionado === "todos") {
@@ -158,6 +210,7 @@ export default function MeusPedidosPage() {
           </div>
 
       </div>
+
     </div>
   );
 }
