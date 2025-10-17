@@ -10,7 +10,7 @@ interface Demanda {
   id: string;
   titulo: string;
   descricao: string;
-  status: "solicitação" | "aceito" | "recusado";
+  status: "solicitação" | "sugestão" | "reclamação" | "elogio";
 }
 
 const demandasMock: Demanda[] = [
@@ -24,13 +24,13 @@ const demandasMock: Demanda[] = [
     id: "2",
     titulo: "Demanda sobre Iluminação",
     descricao: "O poste da rua está apagado, essa já é a segunda vez em 5 semanas seguidas.",
-    status: "solicitação",
+    status: "reclamação",
   },
   {
     id: "3",
     titulo: "Demanda sobre Iluminação",
     descricao: "O poste da rua está apagado, essa já é a segunda vez em 5 semanas seguidas.",
-    status: "solicitação",
+    status: "sugestão",
   },
   {
     id: "4",
@@ -42,7 +42,7 @@ const demandasMock: Demanda[] = [
     id: "5",
     titulo: "Demanda sobre Iluminação",
     descricao: "O poste da rua está apagado, essa já é a segunda vez em 5 semanas seguidas.",
-    status: "solicitação",
+    status: "elogio",
   },
   {
     id: "6",
@@ -75,6 +75,21 @@ export default function PedidosSecretariaPage() {
     console.log("Analisar demanda:", id);
   };
 
+  const getStatusColor = (status: string) => {
+    switch (status) {
+      case "solicitação":
+        return "bg-purple-100 text-purple-800";
+      case "sugestão":
+        return "bg-blue-100 text-blue-800";
+      case "reclamação":
+        return "bg-red-100 text-red-800";
+      case "elogio":
+        return "bg-green-100 text-green-800";
+      default:
+        return "bg-gray-100 text-gray-800";
+    }
+  };
+
   const demandasFiltradas = demandas.filter(demanda => {
     if (filtroSelecionado === "todos") {
       return true;
@@ -86,7 +101,7 @@ export default function PedidosSecretariaPage() {
     <div className="min-h-screen bg-[var(--global-bg)]">
       <Banner
         icone={ClipboardList}
-        titulo="Pedidos Enviados"
+        titulo="Pedidos recebidos"
         className="mb-6 md:mb-8"
       />
 
@@ -94,10 +109,10 @@ export default function PedidosSecretariaPage() {
         <div className="mx-auto">
           <div className="mb-6">
 
-            
+
             <div className="flex items-center gap-4">
-              <Filter className="h-4 w-4 text-[var(--global-text-primary)]" />
-              <span className="text-sm text-[var(--global-text-primary)]">Filtrar por:</span>
+              <Filter className="h-4 w-4 text-gray-400" />
+              <span className="text-sm text-gray-700">Filtrar por:</span>
               <Select value={filtroSelecionado} onValueChange={handleFiltroChange}>
                 <SelectTrigger className="w-64">
                   <SelectValue placeholder="Todos os pedidos" />
@@ -105,8 +120,9 @@ export default function PedidosSecretariaPage() {
                 <SelectContent>
                   <SelectItem value="todos">Todos os pedidos</SelectItem>
                   <SelectItem value="solicitação">Solicitações</SelectItem>
-                  <SelectItem value="aceito">Aceitos</SelectItem>
-                  <SelectItem value="recusado">Recusados</SelectItem>
+                  <SelectItem value="sugestão">Sugestões</SelectItem>
+                  <SelectItem value="reclamação">Reclamações</SelectItem>
+                  <SelectItem value="elogio">Elogios</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -120,17 +136,22 @@ export default function PedidosSecretariaPage() {
                   key={demanda.id}
                   className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm hover:shadow-md transition-shadow flex flex-col"
                 >
-                  <h3 className="text-lg font-semibold text-[var(--global-text-primary)] mb-3">
-                    {demanda.titulo}
-                  </h3>
+                  <div className="flex items-start justify-between mb-3">
+                    <h3 className="text-lg font-semibold text-gray-700 flex-1">
+                      {demanda.titulo}
+                    </h3>
+                    <span className={`ml-2 px-3 py-1 rounded-full text-xs font-medium capitalize whitespace-nowrap ${getStatusColor(demanda.status)}`}>
+                      {demanda.status}
+                    </span>
+                  </div>
                   
-                  <p className="text-sm text-gray-600 mb-6 flex-1 line-clamp-3">
+                  <p className="text-sm text-gray-900/80 mb-6 flex-1 line-clamp-3">
                     {demanda.descricao}
                   </p>
                   
                   <Button 
                     onClick={() => handleAnalisarDemanda(demanda.id)}
-                    className="w-full bg-[var(--global-accent)] hover:bg-[var(--global-accent-hover)] text-white"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white"
                   >
                     Analisar Demanda
                   </Button>
