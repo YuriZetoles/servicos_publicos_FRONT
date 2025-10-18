@@ -6,6 +6,7 @@ import ProgressoPedido from "./ProgressoPedido";
 import Image from "next/image";
 import { StarRating } from "./ui/star-rating";
 import { Button } from "./ui/button";
+import { ImageCarousel } from "./ui/image-carousel";
 import { useState } from "react";
 
 interface DetalhesDemandaModalProps {
@@ -62,29 +63,11 @@ export default function DetalhesDemandaModal({ pedido, isOpen, onClose }: Detalh
               <h3 className="text-lg font-medium text-[var(--global-text-primary)]">
                 {Array.isArray(pedido.imagem) ? 'Imagens da demanda' : 'Imagem da demanda'}
               </h3>
-              {Array.isArray(pedido.imagem) ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {pedido.imagem.map((img, index) => (
-                    <div key={index} className="relative w-full h-60 rounded-md overflow-hidden">
-                      <Image
-                        src={img}
-                        alt={`Imagem da demanda ${index + 1}`}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                  ))}
-                </div>
-              ) : (
-                <div className="relative w-full h-60 rounded-md overflow-hidden">
-                  <Image
-                    src={pedido.imagem}
-                    alt="Imagem da demanda"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              )}
+              <ImageCarousel 
+                images={Array.isArray(pedido.imagem) ? pedido.imagem : [pedido.imagem]}
+                alt="Imagem da demanda"
+                className="h-48"
+              />
             </div>
           )}
 
@@ -133,21 +116,18 @@ export default function DetalhesDemandaModal({ pedido, isOpen, onClose }: Detalh
             </div>
         )}
 
-        {isConcluido && Array.isArray(pedido.conclusao?.imagem) && pedido.conclusao?.imagem.length > 0 && (
-            <div className="space-y-2">
-              <h3 className="text-lg font-medium text-[var(--global-text-primary)]">
-                Imagem da conclusão da demanda
-              </h3>
-              <div className="relative w-full h-48 rounded-md overflow-hidden border">
-                <Image
-                  src={pedido.conclusao.imagem[0]}
-                  alt="Imagem da conclusão"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-          )}
+         {isConcluido && pedido.conclusao?.imagem && (
+             <div className="space-y-2">
+               <h3 className="text-lg font-medium text-[var(--global-text-primary)]">
+                 {Array.isArray(pedido.conclusao.imagem) ? 'Imagens da conclusão' : 'Imagem da conclusão'}
+               </h3>
+               <ImageCarousel 
+                 images={Array.isArray(pedido.conclusao.imagem) ? pedido.conclusao.imagem : [pedido.conclusao.imagem]}
+                 alt="Imagem da conclusão"
+                 className="h-48"
+               />
+             </div>
+           )}
 
         {isConcluido && (
             <div className="space-y-4">
