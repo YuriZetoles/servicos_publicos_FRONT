@@ -118,6 +118,8 @@ export default function MeusPedidosPage() {
   const [pedidoSelecionado, setPedidoSelecionado] = useState<Pedido | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const ITENS_POR_PAGINA = 6;
+
   const handleFiltroChange = (value: string) => {
     setFiltroSelecionado(value);
     setPaginaAtual(1); 
@@ -151,6 +153,11 @@ export default function MeusPedidosPage() {
     return pedido.status === filtroSelecionado;
   });
 
+  const totalPaginas = Math.ceil(pedidosFiltrados.length / ITENS_POR_PAGINA);
+  const indiceInicial = (paginaAtual - 1) * ITENS_POR_PAGINA;
+  const indiceFinal = indiceInicial + ITENS_POR_PAGINA;
+  const pedidosPaginados = pedidosFiltrados.slice(indiceInicial, indiceFinal);
+
   return (
     <div className="min-h-screen bg-[var(--global-bg)]">
       <Banner
@@ -181,7 +188,7 @@ export default function MeusPedidosPage() {
 
         {pedidosFiltrados.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16 mb-8">
-              {pedidosFiltrados.map((pedido) => (
+              {pedidosPaginados.map((pedido) => (
                 <CardPedido
                   key={pedido.id}
                   pedido={pedido}
@@ -214,11 +221,12 @@ export default function MeusPedidosPage() {
             </button>
             
             <div className="flex items-center gap-2 text-sm text-[var(--global-text-primary)]">
-              <span>Página atual: {paginaAtual}</span>
+              <span>Página {paginaAtual} de {totalPaginas}</span>
             </div>
             
             <button
               onClick={handleProximaPagina}
+              disabled={paginaAtual === totalPaginas}
               className="cursor-pointer flex items-center justify-center w-8 h-8 rounded-full border border-gray-300 text-gray-500 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <ChevronRight size={20} />
