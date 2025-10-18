@@ -103,7 +103,8 @@
   --global-accent-hover: #337695;         /* Hover nos elementos de destaque */
   --global-link-hover: #0c384d;           /* Hover específico para links de texto */
   --global-separator: #337695;            /* Linhas divisórias verticais/horizontais */
-  --global-placeholder: #a0aec0;          /* Cinza claro para placeholder */
+  --global-placeholder: #a0aec0; 
+  --global-bg-select: #caccce26;        
 }
 
 .dark {
@@ -178,6 +179,26 @@
   }
 }
 
+/* Animação pulse-slow usada na página inicial */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header styles */
 .site-header {
   background: var(--global-bg);
 }

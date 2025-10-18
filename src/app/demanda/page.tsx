@@ -4,9 +4,8 @@
 
 import CardDemanda from "@/components/cardDemanda";
 import Banner from "@/components/banner";
-import { useState, useEffect, useCallback } from "react";
-import Header from "@/components/header";
 import Footer from "@/components/footer";
+import { useState, useEffect, useCallback } from "react";
 import { getAccessToken } from "@/hooks/useAuthMutations";
 import { CreateDemandaDialog } from "@/components/CreateDemandaDialog";
 
@@ -113,7 +112,6 @@ export default function Demanda() {
 
   return (
     <div data-test="demanda-page">
-      <Header />
       <Banner
         titulo={bannerData?.tipo || "Coleta"}
         descricao={bannerData?.descricao || "Serviços prestados com relação a coleta de restos de construção, entulho, lixos, vegetais e coleta de animais mortos."}
