@@ -9,7 +9,7 @@ export interface Pedido {
   titulo: string;
   status: "aceito" | "recusado";
   descricao?: string;
-  imagem?: string;
+  imagem?: string | string[];
   endereco?: {
     bairro: string;
     tipoLogradouro: string;
@@ -23,7 +23,7 @@ export interface Pedido {
   };
   conclusao?: {
     descricao: string;
-    imagem?: string;
+    imagem?: string | string[];
     dataConclusao: string;
   };
 }

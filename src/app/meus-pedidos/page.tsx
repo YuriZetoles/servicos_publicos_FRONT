@@ -10,10 +10,10 @@ import DetalhesDemandaModal from "@/components/detalheDemandaModal";
 const pedidosMock: Pedido[] = [
   {
     id: "1",
-    titulo: "Demanda sobre Iluminação Pública",
+    titulo: "Demanda sobre Limpeza Urbana",
     status: "aceito",
     descricao: "Tem restos de construção em frente a minha casa, preciso que coletem pois está atrapalhando a passagem.",
-    imagem: "/banner.png",
+    imagem: ["/banner.png", "/banner.png"],
     endereco: {
       bairro: "Bela Vista",
       tipoLogradouro: "Avenida",
@@ -48,8 +48,8 @@ const pedidosMock: Pedido[] = [
     id: "3",
     titulo: "Demanda sobre Asfaltamento",
     status: "aceito",
-    descricao: "A rua está com muitas crateras, dificultando a passagem de veículos.",
-    imagem: "/banner.png",
+    descricao: "A rua está com muitas crateras, dificultando a passagem de veículos. Várias fotos mostram o estado crítico da pavimentação.",
+    imagem: ["/banner.png", "/banner.png", "/banner.png", "/banner.png"],
     endereco: {
       bairro: "Jardim América",
       tipoLogradouro: "Rua",
@@ -67,7 +67,7 @@ const pedidosMock: Pedido[] = [
     titulo: "Demanda sobre Iluminação Pública",
     status: "aceito",
     descricao: "Lâmpada da rua queimou e está escuro à noite, causando insegurança.",
-    imagem: "/banner.png",
+    imagem: ["/banner.png", "/banner.png", "/banner.png"],
     endereco: {
       bairro: "Bela Vista",
       tipoLogradouro: "Avenida",
@@ -80,8 +80,8 @@ const pedidosMock: Pedido[] = [
       concluido: true,
     },
     conclusao: {
-      descricao: "No dia 17/10/2024 a troca de lâmpada foi feita pela empresa Energisa",
-      imagem: "/banner.png",
+      descricao: "No dia 17/10/2024 a troca de lâmpada foi feita pela empresa Energisa. O problema foi resolvido completamente.",
+      imagem: ["/banner.png", "/banner.png", "/banner.png"],
       dataConclusao: "17/10/2024"
     }
   },
