@@ -1,6 +1,6 @@
 "use client";
 
-import { Check } from "lucide-react";
+import { Check, X } from "lucide-react";
 import { Progress } from "./ui/progress";
 
 interface ProgressoPedidoProps {
@@ -25,6 +25,8 @@ export default function ProgressoPedido({ progresso, size = "md", variant = "def
   const getCircleSize = () => size === "sm" ? "w-5 h-5" : "w-6 h-6";
   const getProgressHeight = () => size === "sm" ? "h-2" : "h-2";
   
+  const getIcon = () => variant === "error" ? X : Check;
+  
   const getColors = () => {
     if (variant === "error") {
       return {
@@ -41,6 +43,7 @@ export default function ProgressoPedido({ progresso, size = "md", variant = "def
   };
 
   const colors = getColors();
+  const Icon = getIcon();
 
   return (
     <div className="space-y-4">
@@ -49,7 +52,7 @@ export default function ProgressoPedido({ progresso, size = "md", variant = "def
           <div className={`${getCircleSize()} rounded-full flex items-center justify-center transition-all duration-500 ease-in-out ${
             progresso.aprovado ? colors.active : colors.inactive
           }`}>
-            <Check 
+            <Icon 
               size={getIconSize()} 
               className={`transition-all duration-300 ease-in-out ${
                 progresso.aprovado ? 'scale-100 opacity-100' : 'scale-75 opacity-50'
@@ -62,7 +65,7 @@ export default function ProgressoPedido({ progresso, size = "md", variant = "def
           <div className={`${getCircleSize()} rounded-full flex items-center justify-center transition-all duration-500 ease-in-out ${
             progresso.emProgresso ? colors.active : colors.inactive
           }`}>
-            <Check 
+            <Icon 
               size={getIconSize()} 
               className={`transition-all duration-300 ease-in-out ${
                 progresso.emProgresso ? 'scale-100 opacity-100' : 'scale-75 opacity-50'
@@ -75,7 +78,7 @@ export default function ProgressoPedido({ progresso, size = "md", variant = "def
           <div className={`${getCircleSize()} rounded-full flex items-center justify-center transition-all duration-500 ease-in-out ${
             progresso.concluido ? colors.active : colors.inactive
           }`}>
-            <Check 
+            <Icon 
               size={getIconSize()} 
               className={`transition-all duration-300 ease-in-out ${
                 progresso.concluido ? 'scale-100 opacity-100' : 'scale-75 opacity-50'

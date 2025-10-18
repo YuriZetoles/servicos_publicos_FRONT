@@ -40,13 +40,20 @@ export default function DetalhesDemandaModal({ pedido, isOpen, onClose }: Detalh
           </DialogTitle>
         </DialogHeader>
 
-        <div className="flex-1 overflow-y-auto space-y-6 p-6 min-h-0 scrollbar-hide">
-          <div className="my-4">
+        <div className="flex-1 overflow-y-auto px-6 pt-4 pb-6 min-h-0 scrollbar-hide">
+          <div className="mb-4">
             {pedido.status === "aceito" && pedido.progresso && (
               <ProgressoPedido progresso={pedido.progresso} />
             )}
+            {pedido.status === "recusado" && (
+              <ProgressoPedido 
+                progresso={{ aprovado: true, emProgresso: true, concluido: true }} 
+                variant="error" 
+              />
+            )}
           </div>
 
+          <div className="space-y-6">
           {pedido.descricao && (
             <div className="space-y-4">
               <h3 className="text-lg font-medium text-[var(--global-text-primary)]">
@@ -161,6 +168,7 @@ export default function DetalhesDemandaModal({ pedido, isOpen, onClose }: Detalh
               </div>
             </div>
           )}
+          </div>
         </div>
       </DialogContent>
     </Dialog>
