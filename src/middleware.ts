@@ -6,9 +6,9 @@ export function middleware(request: NextRequest) {
   const accessToken = request.cookies.get('access_token')?.value;
   
   // Rotas públicas que não precisam de autenticação
-  const publicPaths = ['/login', '/signup', '/recover-password'];
+  const publicPaths = ['/', '/login', '/signup', '/recover-password', '/cadastro'];
   const isPublicPath = publicPaths.some(path => 
-    request.nextUrl.pathname.startsWith(path)
+    request.nextUrl.pathname === path || request.nextUrl.pathname.startsWith(path + '/')
   );
 
   // Se não estiver autenticado e tentar acessar rota protegida
@@ -16,8 +16,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login/municipe', request.url));
   }
 
-  // Se tem token e está tentando acessar login, redireciona para home
-  if (accessToken && isPublicPath) {
+  // Se tem token e está tentando acessar login/cadastro, redireciona para home
+  const authOnlyPaths = ['/login', '/signup', '/cadastro'];
+  const isAuthOnlyPath = authOnlyPaths.some(path => 
+    request.nextUrl.pathname.startsWith(path)
+  );
+  
+  if (accessToken && isAuthOnlyPath) {
     return NextResponse.redirect(new URL('/', request.url));
   }
 

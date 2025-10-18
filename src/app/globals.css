@@ -189,6 +189,26 @@
   }
 }
 
+/* Animação pulse-slow usada na página inicial */
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 4s ease-in-out infinite;
+}
+
+/* Scroll suave */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Header styles */
 .site-header {
   background: var(--global-bg);
 }

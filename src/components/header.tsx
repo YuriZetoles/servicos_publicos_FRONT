@@ -17,20 +17,26 @@ interface HeaderLink {
 
 export default function Header({ theme, inverted }: { theme?: 'default' | 'green' | 'purple'; inverted?: boolean }) {
   const [open, setOpen] = React.useState(false);
-  const { isAuthenticated } = useAuth();
+  const [mounted, setMounted] = React.useState(false);
+  const { isAuthenticated, logout } = useAuth();
   
+    // Garante que o componente só renderiza os links baseados em auth após montar no cliente
+    React.useEffect(() => {
+      setMounted(true);
+    }, []);
+
   const links: HeaderLink[] = [
     { href: "/", label: "Home" },
-    { href: "/pedidos", label: "Meus Pedidos", requiresAuth: true },
+    { href: "/meus-pedidos", label: "Meus Pedidos", requiresAuth: true },
     { href: "/perfil", label: "Perfil", requiresAuth: true },
     { href: "/login", label: "Login", hideWhenAuth: true },
   ];
 
-  const visibleLinks = links.filter(link => {
+  const visibleLinks = mounted ? links.filter(link => {
     if (link.requiresAuth && !isAuthenticated) return false;
     if (link.hideWhenAuth && isAuthenticated) return false;
     return true;
-  });
+  }) : links.filter(link => !link.requiresAuth);
 
   const cls = `site-header bg-[var(--global-bg)] border-b ${inverted ? 'site-header--inverted' : ''}`;
   const themeClass = theme === 'green' ? 'global-theme-green' : theme === 'purple' ? 'global-theme-purple' : '';
@@ -54,7 +60,7 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
           </div>
 
           <div className="hidden md:block" data-test="header-nav-desktop">
-            <nav>
+            <nav className="flex items-center gap-4">
               <Navigation>
                 {visibleLinks.map((link) => (
                   <NavLink 
@@ -66,6 +72,15 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
                   </NavLink>
                 ))}
               </Navigation>
+              {mounted && isAuthenticated && (
+                <button
+                  onClick={logout}
+                  className="ml-2 px-4 py-2 bg-[var(--global-text-primary)]/90 text-white text-sm font-medium rounded-lg hover:bg-[var(--global-text-secondary)] transition-colors"
+                  data-test="header-logout-button"
+                >
+                  Sair
+                </button>
+              )}
             </nav>
           </div>
 
@@ -113,6 +128,15 @@ export default function Header({ theme, inverted }: { theme?: 'default' | 'green
                 </NavLink>
               ))}
             </Navigation>
+            {mounted && isAuthenticated && (
+              <button
+                onClick={logout}
+                className="mt-3 w-full px-4 py-2 bg-[var(--global-text-primary)]/90 text-white text-sm font-medium rounded-lg hover:bg-[var(--global-text-secondary)] transition-colors"
+                data-test="header-mobile-logout-button"
+              >
+                Sair
+              </button>
+            )}
           </div>
         </div>
       </div>
