@@ -8,6 +8,7 @@ import { useState, useEffect, useCallback } from "react";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import { getAccessToken } from "@/hooks/useAuthMutations";
+import { CreateDemandaDialog } from "@/components/CreateDemandaDialog";
 
 interface DemandaProps {
   titulo: string,
@@ -21,16 +22,16 @@ interface DemandaProps {
 
 const dadosFooter = {
   endereco: {
-      nome: "Centro Administrativo Senador Doutor Teotônio Vilela",
-      rua: "Av. Senador Teotônio Vilela, 4177 - Jardim América",
-      cidade: "Vilhena - RO",
-      cep: "78995-000",
+    nome: "Centro Administrativo Senador Doutor Teotônio Vilela",
+    rua: "Av. Senador Teotônio Vilela, 4177 - Jardim América",
+    cidade: "Vilhena - RO",
+    cep: "78995-000",
   },
   contato: {
-      email: "mailto:gabinete@vilhena.ro.gov.br",
-      telefone: "tel:+5693919-7080",
-      facebook: "https://www.facebook.com/municipiodevilhena/?locale=pt_BR",
-      instagram: "https://www.instagram.com/municipiodevilhena/",
+    email: "mailto:gabinete@vilhena.ro.gov.br",
+    telefone: "tel:+5693919-7080",
+    facebook: "https://www.facebook.com/municipiodevilhena/?locale=pt_BR",
+    instagram: "https://www.instagram.com/municipiodevilhena/",
   }
 }
 
@@ -39,6 +40,8 @@ export default function Demanda() {
   const [bannerData, setBannerData] = useState<DemandaProps | null>(null);
   const [loading, setLoading] = useState(true);
   const [imageBlobs, setImageBlobs] = useState<{ [key: string]: string }>({});
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedTipo, setSelectedTipo] = useState<string>('');
 
   const fetchImageAsBlob = async (cardId: string) => {
     try {
@@ -119,18 +122,30 @@ export default function Demanda() {
       />
       <div className="px-6 sm:px-6 lg:px-40 py-8" data-test="demanda-page-container">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-stretch" data-test="demanda-cards-grid">
-        {cards.map((card) => (
-          <div key={card._id} data-test={`demanda-card-${card._id}`}>
-            <CardDemanda 
-              titulo={card.titulo}
-              descricao={card.descricao}
-              imagem={imageBlobs[card._id] || card.link_imagem}
-            />
-          </div>
-        ))}
+          {cards.map((card) => (
+            <div key={card._id} data-test={`demanda-card-${card._id}`}>
+              <CardDemanda
+                titulo={card.titulo}
+                descricao={card.descricao}
+                imagem={imageBlobs[card._id] || card.link_imagem}
+                onCreateClick={() => {
+                  setSelectedTipo(card.tipo || card.titulo);
+                  setIsDialogOpen(true);
+                }}
+              />
+            </div>
+          ))}
         </div>
       </div>
-          <Footer endereco={dadosFooter.endereco} contato={dadosFooter.contato} />
+
+      <Footer endereco={dadosFooter.endereco} contato={dadosFooter.contato} />
+
+      {/* Dialog de criação de demanda */}
+      <CreateDemandaDialog
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+        tipoDemanda={selectedTipo}
+      />
     </div>
   );
 }
