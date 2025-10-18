@@ -159,7 +159,7 @@ export default function DemandaPage() {
   // Loading state da autenticação
   if (isAuthLoading) {
     return (
-      <div className="min-h-screen flex justify-center items-center bg-gray-50" data-test="demanda-loading-container">
+      <div className="flex justify-center items-center py-40 bg-gray-50" data-test="demanda-loading-container">
         <div className="text-lg text-gray-600" data-test="demanda-loading-message">
           Verificando autenticação...
         </div>
