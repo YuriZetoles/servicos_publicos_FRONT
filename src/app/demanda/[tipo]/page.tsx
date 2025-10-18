@@ -9,6 +9,8 @@ import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { getAccessToken } from "@/hooks/useAuthMutations";
 import { CreateDemandaDialog } from "@/components/CreateDemandaDialog";
+import { ArrowLeft } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface Demanda {
   titulo: string;
@@ -176,7 +178,18 @@ export default function DemandaPage() {
         className="mb-4"
       />
       
-      <div className="px-6 sm:px-6 lg:px-40 py-8" data-test="demanda-page-container">
+      <div className="px-6 sm:px-6 lg:px-40 py-4" data-test="demanda-page-container">
+        <div className="mb-6">
+          <Button
+            size="lg"
+            onClick={() => router.back()}
+            className="flex items-center gap-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span className="font-medium">Voltar</span>
+          </Button>
+        </div>
+
         {isLoadingCards ? (
           <div className="flex justify-center items-center py-20">
             <div className="text-lg text-gray-600">Carregando serviços...</div>
