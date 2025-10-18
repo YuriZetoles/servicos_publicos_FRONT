@@ -1,4 +1,4 @@
-// /app/demanda/[tipo]
+// /app/demanda/[tipo]/page.tsx
 
 "use client";
 
@@ -8,6 +8,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { getAccessToken } from "@/hooks/useAuthMutations";
+import { CreateDemandaDialog } from "@/components/CreateDemandaDialog";
 
 interface Demanda {
   titulo: string;
@@ -36,6 +37,8 @@ export default function DemandaPage() {
   const [bannerData, setBannerData] = useState<Demanda | null>(null);
   const [imageBlobs, setImageBlobs] = useState<Record<string, string>>({});
   const [isLoadingCards, setIsLoadingCards] = useState(true);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const [selectedTipo, setSelectedTipo] = useState<string>('');
   
   const tipoFiltro = decodeURIComponent(params.tipo as string);
   
@@ -200,12 +203,23 @@ export default function DemandaPage() {
                   titulo={card.titulo}
                   descricao={card.descricao}
                   imagem={imageBlobs[card._id] || card.link_imagem}
+                  onCreateClick={() => {
+                    setSelectedTipo(`${card.tipo} - ${card.titulo}`);
+                    setIsDialogOpen(true);
+                  }}
                 />
               </div>
             ))}
           </div>
         )}
       </div>
+
+      <CreateDemandaDialog
+        open={isDialogOpen}
+        onOpenChange={setIsDialogOpen}
+        tipoDemanda={selectedTipo}
+      />
+
     </div>
   );
 }
