@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { usuarioService } from '@/services/usuarioService';
-import type { UpdateUsuariosData } from '@/types';
+import type { UpdateUsuariosData, Usuarios } from '@/types';
 
 export function useProfileUpdate(userId: string) {
   const [isEditing, setIsEditing] = useState(false);
@@ -17,8 +17,8 @@ export function useProfileUpdate(userId: string) {
     },
     onSuccess: () => {
       // Invalida o cache da sessão e do perfil para atualizar os dados
-      queryClient.invalidateQueries({ queryKey: ['session'] });
-      queryClient.invalidateQueries({ queryKey: ['user-profile', userId] });
+      void queryClient.invalidateQueries({ queryKey: ['session'] });
+      void queryClient.invalidateQueries({ queryKey: ['user-profile', userId] });
       setIsEditing(false);
     },
   });
@@ -31,7 +31,7 @@ export function useProfileUpdate(userId: string) {
     onSuccess: (response) => {
       // Atualiza o cache imediatamente com a nova URL da foto
       if (response?.data?.link_imagem) {
-        queryClient.setQueryData(['user-profile', userId], (oldData: any) => {
+        queryClient.setQueryData(['user-profile', userId], (oldData: Usuarios | undefined) => {
           if (oldData) {
             return {
               ...oldData,
@@ -43,8 +43,8 @@ export function useProfileUpdate(userId: string) {
       }
       
       // Também invalida os caches para garantir sincronização
-      queryClient.invalidateQueries({ queryKey: ['session'] });
-      queryClient.invalidateQueries({ queryKey: ['user-profile', userId] });
+      void queryClient.invalidateQueries({ queryKey: ['session'] });
+      void queryClient.invalidateQueries({ queryKey: ['user-profile', userId] });
     },
   });
 
@@ -55,7 +55,7 @@ export function useProfileUpdate(userId: string) {
     },
     onSuccess: () => {
       // Atualiza o cache imediatamente removendo a foto
-      queryClient.setQueryData(['user-profile', userId], (oldData: any) => {
+      queryClient.setQueryData(['user-profile', userId], (oldData: Usuarios | undefined) => {
         if (oldData) {
           return {
             ...oldData,
@@ -66,8 +66,8 @@ export function useProfileUpdate(userId: string) {
       });
       
       // Também invalida os caches para garantir sincronização
-      queryClient.invalidateQueries({ queryKey: ['session'] });
-      queryClient.invalidateQueries({ queryKey: ['user-profile', userId] });
+      void queryClient.invalidateQueries({ queryKey: ['session'] });
+      void queryClient.invalidateQueries({ queryKey: ['user-profile', userId] });
     },
   });
 

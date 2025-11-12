@@ -16,12 +16,9 @@ import { toast } from "sonner";
 export default function ColaboradorAdminPage() {
   const queryClient = useQueryClient();
   const [page, setPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
-  const [hasPrevPage, setHasPrevPage] = useState(false);
-  const [hasNextPage, setHasNextPage] = useState(false);
   const [pendingSearchText, setPendingSearchText] = useState("");
   const [searchText, setSearchText] = useState("");
-  const [nivelFilter, setNivelFilter] = useState<string>(""); 
+  const [nivelFilter, setNivelFilter] = useState<string>("");
   const [statusFilter, setStatusFilter] = useState<string>("");
   const [openCreate, setOpenCreate] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -93,6 +90,13 @@ export default function ColaboradorAdminPage() {
       return byTexto && byNivel && byStatus;
     });
   }, [colaboradores, searchText, nivelFilter, statusFilter]);
+
+  // Paginação manual dos dados filtrados
+  const totalPages = Math.ceil(colaboradoresFiltrados.length / 15);
+  const paginatedColaboradores = colaboradoresFiltrados.slice((page - 1) * 15, page * 15);
+  const hasPrevPage = page > 1;
+  const hasNextPage = page < totalPages;
+
   return (
     <div className="min-h-screen bg-global-bg">
       <div className="px-6 sm:px-6 py-6 md:py-8">
@@ -161,12 +165,12 @@ export default function ColaboradorAdminPage() {
                     <tr>
                       <td colSpan={10} className="px-6 py-8 text-center text-gray-500">Carregando colaboradores...</td>
                     </tr>
-                  ) : colaboradoresFiltrados.length === 0 ? (
+                  ) : paginatedColaboradores.length === 0 ? (
                     <tr>
                       <td colSpan={10} className="px-6 py-8 text-center text-gray-500">Nenhum colaborador encontrado.</td>
                     </tr>
                   ) : (
-                    colaboradoresFiltrados.map((c) => {
+                    paginatedColaboradores.map((c) => {
                       const niveis: string[] = [];
                       if (c?.nivel_acesso?.secretario) niveis.push('Secretário');
                       if (c?.nivel_acesso?.operador) niveis.push('Operador');

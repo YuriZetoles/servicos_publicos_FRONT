@@ -50,12 +50,7 @@ export function normalizeImageUrl(url: string | undefined | null): string {
  * Pode ser expandido para adicionar parâmetros de query para redimensionamento
  */
 export function optimizeImageUrl(
-  url: string,
-  options?: {
-    width?: number;
-    height?: number;
-    quality?: number;
-  }
+  url: string
 ): string {
   if (!isValidImageUrl(url)) return '';
   

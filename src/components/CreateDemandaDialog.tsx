@@ -70,7 +70,6 @@ export function CreateDemandaDialog({ open, onOpenChange, tipoDemanda = '' }: Cr
   const [cidade, setCidade] = useState('Vilhena');
   const [estado, setEstado] = useState('RO');
   const [cep, setCep] = useState('');
-  const [loadingCep, setLoadingCep] = useState(false);
   const [imagens, setImagens] = useState<File[]>([]);
   const [previewUrls, setPreviewUrls] = useState<string[]>([]);
   const [uploadProgress, setUploadProgress] = useState<{ current: number; total: number; percentage: number } | null>(null);
@@ -505,15 +504,9 @@ export function CreateDemandaDialog({ open, onOpenChange, tipoDemanda = '' }: Cr
                     onChange={handleCepChange}
                     placeholder="00000-000"
                     maxLength={9}
-                    disabled={loadingCep}
-                    className="border-global-border focus:border-global-accent focus:ring-global-accent pr-10"
+                    className="border-global-border focus:border-global-accent focus:ring-global-accent"
                     data-test="cep-input"
                   />
-                  {loadingCep && (
-                    <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                      <Loader2 className="h-4 w-4 animate-spin text-global-accent" />
-                    </div>
-                  )}
                 </div>
               </div>
 

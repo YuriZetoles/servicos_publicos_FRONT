@@ -9,7 +9,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -51,7 +50,6 @@ export function CreateColaboradorModal({ open, onOpenChange, usuario }: CreateCo
   const [cep, setCep] = useState('');
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
-  const [loadingCep, setLoadingCep] = useState(false);
 
   const [nivel, setNivel] = useState<'operador' | 'secretario' | 'administrador' | ''>('');
 
@@ -403,15 +401,9 @@ export function CreateColaboradorModal({ open, onOpenChange, usuario }: CreateCo
                   placeholder="00000-000"
                   value={cep}
                   onChange={handleCepChange}
-                  disabled={isSubmitting || loadingCep}
+                  disabled={isSubmitting}
                   maxLength={9}
-                  className="pr-10"
                 />
-                {loadingCep && (
-                  <div className="absolute right-3 top-1/2 -translate-y-1/2">
-                    <Loader2 className="h-4 w-4 animate-spin text-global-accent" />
-                  </div>
-                )}
               </div>
               <Input placeholder="Logradouro" value={logradouro} onChange={(e) => setLogradouro(e.target.value)} disabled={isSubmitting} />
               <Input placeholder="Número" value={numero} onChange={(e) => setNumero(e.target.value)} disabled={isSubmitting} />

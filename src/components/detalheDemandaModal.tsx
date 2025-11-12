@@ -34,7 +34,7 @@ export default function DetalhesDemandaModal({ pedido, isOpen, onClose }: Detalh
       setRating(0);
       setAvaliacao("");
     }
-  }, [pedido?.id, isOpen]);
+  }, [pedido, isOpen]);
 
   if (!pedido) return null;
 

@@ -2,7 +2,7 @@
 
 "use client";
 
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { useCallback } from "react";
 import { usePathname } from "next/navigation";
 import { toast } from "sonner";

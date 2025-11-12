@@ -7,7 +7,7 @@ import type { Usuarios } from '@/types';
 /**
  * Formata uma data para o formato brasileiro (DD/MM/YYYY)
  */
-export function formatDate(date: any): string {
+export function formatDate(date: string | number | Date | null | undefined): string {
   if (!date || date === 'Não informado') return 'Não informado';
   
   try {
@@ -226,7 +226,7 @@ export function validateName(name: string): { valid: boolean; message?: string }
 /**
  * Obtém o tipo de usuário baseado no nível de acesso
  */
-export function getUserType(user: Usuarios | null | undefined): string {
+export function getUserType(user: Pick<Usuarios, 'nivel_acesso'> | null | undefined): string {
   if (!user || !('nivel_acesso' in user)) return 'Não informado';
   if (user.nivel_acesso?.administrador) return 'Administrador';
   if (user.nivel_acesso?.secretario) return 'Secretário';
@@ -238,7 +238,7 @@ export function getUserType(user: Usuarios | null | undefined): string {
 /**
  * Verifica se o usuário é munícipe
  */
-export function isMunicipe(user: Usuarios | null | undefined): boolean {
+export function isMunicipe(user: Pick<Usuarios, 'nivel_acesso'> | null | undefined): boolean {
   if (!user || !('nivel_acesso' in user)) return false;
   return !!user.nivel_acesso?.municipe;
 }
@@ -246,7 +246,7 @@ export function isMunicipe(user: Usuarios | null | undefined): boolean {
 /**
  * Obtém um dado do usuário com fallback para "Não informado"
  */
-export function getUserData(user: Usuarios | null | undefined, field: keyof Usuarios): string | null {
+export function getUserData(user: Partial<Usuarios> | null | undefined, field: keyof Usuarios): string | null {
   if (!user) return field === 'link_imagem' ? null : 'Não informado';
   
   const value = user[field];
@@ -262,13 +262,14 @@ export function getUserData(user: Usuarios | null | undefined, field: keyof Usua
  * Obtém um campo do endereço do usuário
  */
 export function getUserEndereco(
-  user: Usuarios | null | undefined, 
+  user: Partial<Usuarios> | null | undefined, 
   field: string
 ): string | number {
   if (!user || !('endereco' in user) || !user.endereco) {
     return field === 'numero' ? 0 : 'Não informado';
   }
   
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const value = (user.endereco as any)[field];
   return value || (field === 'numero' ? 0 : 'Não informado');
 }

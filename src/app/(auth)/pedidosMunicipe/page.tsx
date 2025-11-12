@@ -31,7 +31,7 @@ export default function MeusPedidosPage() {
     return [filtro];
   };
 
-  const {data: response, isLoading, error } = useQuery ({
+  const {data: response, isLoading } = useQuery ({
     queryKey: ['demandas', paginaAtual, filtroSelecionado],
     queryFn: async () => {
       const statusFilters = getStatusFilters(filtroSelecionado);
@@ -39,7 +39,7 @@ export default function MeusPedidosPage() {
       
       if (filtroSelecionado === "aceito" && statusFilters) {
         const buscarTodasPaginas = async (status: string) => {
-          let todasPaginas: any[] = [];
+          let todasPaginas: Demanda[] = [];
           let paginaAtual = 1;
           let temMaisPaginas = true;
 
@@ -249,7 +249,7 @@ export default function MeusPedidosPage() {
                 {isLoading ? (
                   "Carregando..."
                 ) : (
-                  `${response?.data?.totalDocs ?? 0} ${(response?.data?.totalDocs ?? 0) === 1 ? 'pedido' : 'pedidos'} ${filtroSelecionado === 'todos' ? 'no total' : 'encontrado(s)'}`
+                  `${totalDocs ?? 0} ${totalDocs === 1 ? 'pedido' : 'pedidos'} ${filtroSelecionado === 'todos' ? 'no total' : 'encontrado(s)'}`
                 )}
               </span>
             </div>

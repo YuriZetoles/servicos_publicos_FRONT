@@ -91,7 +91,7 @@ export const tipoDemandaService = {
     });
 
     if (!response.ok) {
-      const errorText = await response.text();
+      await response.text();
       throw new Error(`Erro ao buscar foto: ${response.status} ${response.statusText}`);
     }
 

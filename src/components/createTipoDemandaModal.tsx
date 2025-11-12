@@ -41,11 +41,10 @@ export function CreateTipoDemandaModal({ open, onOpenChange, tipoDemanda, onSave
   const [icone, setIcone] = useState('');
   const [linkImagem, setLinkImagem] = useState('');
   const [tipo, setTipo] = useState('');
-  const [usuariosSelecionados, setUsuariosSelecionados] = useState<string[]>([]);
   const [imagem, setImagem] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const { data: usuariosAll, isLoading: isLoadingUsuarios } = useQuery({
+  const { data: usuariosAll } = useQuery({
     queryKey: ['usuarios', 'all-for-tipo-demanda', open],
     enabled: open,
     queryFn: async () => {
@@ -66,7 +65,7 @@ export function CreateTipoDemandaModal({ open, onOpenChange, tipoDemanda, onSave
     staleTime: 5 * 60 * 1000,
   });
 
-  const usuarios: Usuarios[] = useMemo(() => Array.isArray(usuariosAll) ? usuariosAll : [], [usuariosAll]);
+  useMemo(() => Array.isArray(usuariosAll) ? usuariosAll : [], [usuariosAll]);
 
   useEffect(() => {
     if (open && tipoDemanda) {
@@ -76,7 +75,7 @@ export function CreateTipoDemandaModal({ open, onOpenChange, tipoDemanda, onSave
       setIcone(tipoDemanda.icone || '');
       setLinkImagem(tipoDemanda.link_imagem || '');
       setTipo(tipoDemanda.tipo || '');
-      setUsuariosSelecionados(Array.isArray(tipoDemanda.usuarios) ? tipoDemanda.usuarios : []);
+      // Removido: setUsuariosSelecionados - não mais usado
       setImagem(null);
       if (tipoDemanda.link_imagem && (tipoDemanda.link_imagem.startsWith('http://') || tipoDemanda.link_imagem.startsWith('https://') || tipoDemanda.link_imagem.startsWith('data:'))) {
         setPreviewUrl(tipoDemanda.link_imagem);

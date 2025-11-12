@@ -2,7 +2,7 @@
 'use client';
 
 import { useState, useRef, useCallback, useEffect } from 'react';
-import { Camera, Upload, X, Loader2, Trash2 } from 'lucide-react';
+import { Camera, Upload, Loader2, Trash2 } from 'lucide-react';
 import { Avatar } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -40,7 +40,7 @@ export function ProfilePhotoUpload({
 
   // Fecha o menu de ações quando clicar fora (mobile)
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent | TouchEvent): void => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsActionsMenuOpen(false);
       }
@@ -48,16 +48,16 @@ export function ProfilePhotoUpload({
 
     if (isActionsMenuOpen) {
       document.addEventListener('mousedown', handleClickOutside);
-      document.addEventListener('touchstart', handleClickOutside as any);
+      document.addEventListener('touchstart', handleClickOutside);
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
-      document.removeEventListener('touchstart', handleClickOutside as any);
+      document.removeEventListener('touchstart', handleClickOutside);
     };
   }, [isActionsMenuOpen]);
 
-  const handleFileSelect = useCallback(async (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileSelect = useCallback(async (event: React.ChangeEvent<HTMLInputElement>): Promise<void> => {
     const file = event.target.files?.[0];
     if (!file) return;
 
@@ -94,7 +94,7 @@ export function ProfilePhotoUpload({
     fileInputRef.current?.click();
   };
 
-  const handleConfirmUpload = async () => {
+  const handleConfirmUpload = async (): Promise<void> => {
     if (!selectedFile) return;
 
     try {
@@ -130,7 +130,7 @@ export function ProfilePhotoUpload({
     setIsRemoveDialogOpen(true);
   };
 
-  const handleConfirmRemove = async () => {
+  const handleConfirmRemove = async (): Promise<void> => {
     if (!onRemove) return;
 
     try {
@@ -265,6 +265,7 @@ export function ProfilePhotoUpload({
             <div className="flex justify-center">
               {previewUrl && (
                 <div className="relative">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={previewUrl}
                     alt="Preview"

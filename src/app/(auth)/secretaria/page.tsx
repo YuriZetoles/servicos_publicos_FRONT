@@ -14,7 +14,6 @@ import { ApiError } from "@/services/api";
 import type { Demanda as DemandaAPI, Usuarios } from "@/types";
 import DetalhesDemandaSecretariaModal from "@/components/detalheDemandaSecretariaModal";
 import { demandaService } from "@/services/demandaService";
-import { usuarioService } from "@/services/usuarioService";
 import { toast } from "sonner";
 
 interface DemandaCard {
@@ -149,13 +148,13 @@ export default function PedidosSecretariaPage() {
   });
 
   // Remover o próprio usuário da lista de operadores (para o secretário não se auto-atribuir)
-  const operadores: Usuarios[] = (operadoresResponse?.data?.docs || []).filter((op: any) => {
+  const operadores: Usuarios[] = (operadoresResponse?.data?.docs || []).filter((op: Usuarios) => {
     try {
       const userId = session?.user?.id;
       if (!userId) return true; // se não tiver sessão, não filtra
 
-      // suportar formatos { _id } ou id ou string
-      const opId = (op && (op._id || op.id || op)).toString();
+      // suportar formatos { _id }
+      const opId = op._id?.toString() || '';
       return opId !== userId.toString();
     } catch (e) {
       // em caso de erro, não filtrar esse item

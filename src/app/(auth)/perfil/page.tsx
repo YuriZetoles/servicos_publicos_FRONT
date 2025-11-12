@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState, useRef } from 'react';
 import { Edit2, X, Save, LogOut, Loader2, User, Mail, Phone, MapPin, Calendar, Briefcase } from 'lucide-react';
 import { toast } from 'sonner';
-import type { UpdateUsuariosData } from '@/types';
+import type { UpdateUsuariosData, EstadoBrasil } from '@/types';
 import {
   formatPhoneNumber,
   formatCEP,
@@ -22,7 +22,6 @@ import {
   cleanCEP,
   validatePhoneNumber,
   validateName,
-  validateCEPVilhena,
   getUserType,
   isMunicipe,
   getUserData,
@@ -52,7 +51,6 @@ export default function PerfilPage() {
     isUpdating,
     isUploadingPhoto,
     isDeletingPhoto,
-    updateError,
   } = useProfileUpdate(sessionUser?.id || '');
 
   // Estados para campos editáveis
@@ -69,7 +67,7 @@ export default function PerfilPage() {
       numero: '' as string | number,
       complemento: '',
       cidade: '',
-      estado: '' as any,
+      estado: '',
     },
   });
 
@@ -103,7 +101,7 @@ export default function PerfilPage() {
         initialCepMarked.current = true;
       }
     }
-  }, [user]);
+  }, [user, marcarCepComoEncontrado]);
 
   useEffect(() => {
     if (!isAuthLoading && !isAuthenticated) {
@@ -111,7 +109,7 @@ export default function PerfilPage() {
     }
   }, [isAuthenticated, isAuthLoading, router]);
 
-  const handleInputChange = (field: string, value: string | number) => {
+  const handleInputChange = (field: string, value: string | number): void => {
     if (field.startsWith('endereco.')) {
       const enderecoField = field.split('.')[1];
       setFormData((prev) => ({
@@ -129,7 +127,7 @@ export default function PerfilPage() {
     }
   };
 
-  const handleCepChange = async (cep: string) => {
+  const handleCepChange = async (cep: string): Promise<void> => {
     const cepFormatado = formatarCep(cep);
     handleInputChange('endereco.cep', cepFormatado);
 
@@ -155,12 +153,12 @@ export default function PerfilPage() {
     }
   };
 
-  const handleCelularChange = (celular: string) => {
+  const handleCelularChange = (celular: string): void => {
     const celularFormatado = formatPhoneNumber(celular);
     handleInputChange('celular', celularFormatado);
   };
 
-  const handleSave = async () => {
+  const handleSave = async (): Promise<void> => {
     // Validar nome
     const nameValidation = validateName(formData.nome);
     if (!nameValidation.valid) {
@@ -183,14 +181,15 @@ export default function PerfilPage() {
     }
 
     try {
-      const updateData: UpdateUsuariosData = {
+    const updateData: UpdateUsuariosData = {
         nome: formData.nome,
         celular: cleanPhoneNumber(formData.celular),
         endereco: {
           ...formData.endereco,
           numero: typeof formData.endereco.numero === 'string' 
             ? parseInt(formData.endereco.numero) || 0 
-            : formData.endereco.numero
+            : formData.endereco.numero,
+          estado: formData.endereco.estado as EstadoBrasil
         },
       };
 
@@ -215,7 +214,7 @@ export default function PerfilPage() {
     }
   };
 
-  const handlePhotoUpload = async (file: File) => {
+  const handlePhotoUpload = async (file: File): Promise<void> => {
     try {
       await uploadPhoto(file);
       // A invalidação do cache no hook vai recarregar automaticamente os dados
@@ -225,7 +224,7 @@ export default function PerfilPage() {
     }
   };
 
-  const handlePhotoRemove = async () => {
+  const handlePhotoRemove = async (): Promise<void> => {
     try {
       await deletePhoto();
       // A invalidação do cache no hook vai recarregar automaticamente os dados
@@ -235,7 +234,7 @@ export default function PerfilPage() {
     }
   };
 
-  const handleLogout = async () => {
+  const handleLogout = async (): Promise<void> => {
     try {
       await logout();
     } catch (error) {
@@ -278,7 +277,7 @@ export default function PerfilPage() {
           <div className="px-6 sm:px-6 lg:px-12 pb-8">
             <div className="flex flex-col sm:flex-row items-center sm:items-end -mt-16 gap-6">
               <ProfilePhotoUpload
-                currentPhotoUrl={getUserData(user as any, 'link_imagem')}
+                currentPhotoUrl={getUserData(user, 'link_imagem')}
                 onUpload={handlePhotoUpload}
                 onRemove={handlePhotoRemove}
                 isUploading={isUploadingPhoto}
@@ -290,7 +289,7 @@ export default function PerfilPage() {
                 <h1 className="text-3xl font-bold text-gray-800" data-test="perfil-titulo">
                   {user.nome}
                 </h1>
-                <p className="mt-2 text-gray-600 text-lg">{getUserType(user as any)}</p>
+                <p className="mt-2 text-gray-600 text-lg">{getUserType(user)}</p>
               </div>
 
               <div className="flex gap-3 pb-2">
@@ -378,7 +377,7 @@ export default function PerfilPage() {
 
                 <ProfileField
                   label="Data de Nascimento"
-                  value={formatDate(getUserData(user as any, 'data_nascimento'))}
+                  value={formatDate(getUserData(user, 'data_nascimento'))}
                   isEditing={false}
                   isDisabled
                   icon={<Calendar className="w-4 h-4" />}
@@ -390,7 +389,7 @@ export default function PerfilPage() {
           </div>
 
 
-          {!isMunicipe(user as any) && (
+          {!isMunicipe(user) && (
             <div className="bg-white rounded-2xl shadow-sm p-8" data-test="perfil-info-profissional">
               <h2 className="text-xl font-semibold mb-6 flex items-center text-gray-800">
                 <Briefcase className="w-5 h-5 mr-2 text-global-accent" />
@@ -510,7 +509,7 @@ export default function PerfilPage() {
 
                 <ProfileField
                   label="Cidade"
-                  value={getUserEndereco(user as any, 'cidade')}
+                  value={getUserEndereco(user, 'cidade')}
                   isEditing={false}
                   isDisabled
                   data-test="perfil-campo-cidade"

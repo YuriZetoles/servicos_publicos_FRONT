@@ -11,7 +11,7 @@ import { ChevronLeft, ChevronRight, ClipboardList, Filter } from "lucide-react";
 import { Select, SelectItem, SelectTrigger, SelectValue, SelectContent } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { ApiError } from "@/services/api";
-import type { Demanda as DemandaAPI } from "@/types";
+import type { Demanda as DemandaAPI, ApiResponse, PaginatedResponse } from "@/types";
 import DetalhesDemandaOperadorModal from "@/components/detalheDemandaOperadorModal";
 import { demandaService } from "@/services/demandaService";
 import { toast } from "sonner";
@@ -42,7 +42,7 @@ export default function PedidosOperadorPage() {
   const [demandaSelecionada, setDemandaSelecionada] = useState<DemandaCard | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { status } = useSession();
   const queryClient = useQueryClient();
 
   const ITENS_POR_PAGINA = 6;
@@ -55,14 +55,14 @@ export default function PedidosOperadorPage() {
 
   const { data: response, isLoading, error } = useQuery({
     queryKey: ['demandas-operador'],
-    queryFn: async () => {
+    queryFn: async (): Promise<ApiResponse<PaginatedResponse<DemandaAPI>> | undefined> => {
       try {
         // A API já deve retornar apenas as demandas do operador logado
         const result = await demandaService.buscarDemandas();
         console.log("📋 Demandas carregadas do operador:", result);
         console.log("📊 Total de demandas:", result?.data?.docs?.length || 0);
         if (result?.data?.docs) {
-          result.data.docs.forEach((d: any) => {
+          result.data.docs.forEach((d: DemandaAPI) => {
             console.log(`  - Demanda ${d._id}: ${d.tipo} - Status: ${d.status}`);
           });
         }
@@ -87,7 +87,7 @@ export default function PedidosOperadorPage() {
   }, [error, router]);
 
   // Mapear as demandas sem filtro adicional - a API já retorna apenas as do operador
-  const demandas: DemandaCard[] = response?.data?.docs?.map((demanda: DemandaAPI) => {
+  const demandas: DemandaCard[] = response?.data?.docs?.map((demanda: DemandaAPI): DemandaCard => {
       // Debug: log da demanda completa para ver estrutura
       if (demanda.status === "Concluída") {
         console.log("Demanda da API no operador (Concluída):", demanda);
